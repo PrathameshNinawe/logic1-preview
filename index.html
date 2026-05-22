@@ -436,6 +436,124 @@ body {
 .wf-bale-rank.b { background: var(--blue); }
 .wf-bale-rank.c { background: var(--amber); }
 
+/* ── DISCLAIMER BANNER ── */
+.disclaimer-banner {
+  max-width: 900px; margin: 0 auto 32px;
+  background: oklch(95% 0.05 82); border: 1.5px solid oklch(82% 0.09 82);
+  border-radius: 8px; padding: 16px 22px;
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.disclaimer-ico { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.disclaimer-title { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; color: oklch(14% 0.008 55); margin-bottom: 5px; }
+.disclaimer-body  { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: oklch(44% 0.008 55); line-height: 1.7; }
+
+/* ── DASHBOARD & REPORTS COMPONENTS (scoped to .app-window) ── */
+.app-window .dash-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; flex-shrink: 0; }
+.app-window .mcard { background: var(--paper-2); border: 1px solid var(--rule); border-radius: var(--r2); padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; }
+.app-window .mcard-label { font-family: var(--font-mono); font-size: 8px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-4); }
+.app-window .mcard-val { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--ink); line-height: 1; font-variant-numeric: tabular-nums; }
+.app-window .mcard-val .unit { font-size: 10px; font-weight: 500; color: var(--ink-3); }
+.app-window .mcard-sub { font-family: var(--font-body); font-size: 9.5px; color: var(--ink-4); }
+.app-window .mcard.c-green .mcard-val { color: var(--green); }
+.app-window .mcard.c-amber .mcard-val { color: var(--amber); }
+.app-window .mcard.c-blue  .mcard-val { color: var(--blue); }
+.app-window .mcard.c-rust  .mcard-val { color: var(--rust); }
+.app-window .mcard-delta { font-family: var(--font-mono); font-size: 8px; font-weight: 500; color: var(--ink-4); margin-top: 1px; }
+.app-window .mcard-delta.up { color: var(--green); }
+.app-window .mcard-delta.dn { color: var(--rust); }
+.app-window .mcard-delta.ne { color: var(--ink-4); }
+.app-window .dash-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; flex-shrink: 0; }
+.app-window .chart-box { background: var(--paper-2); border: 1px solid var(--rule); border-radius: var(--r2); padding: 12px 14px; flex-shrink: 0; }
+.app-window .chart-hd { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.app-window .chart-title { font-family: var(--font-mono); font-size: 8.5px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-3); }
+.app-window .chart-note  { font-family: var(--font-mono); font-size: 8.5px; color: var(--ink-4); }
+.app-window .bars-lg { display: flex; align-items: flex-end; gap: 4px; height: 80px; }
+.app-window .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; height: 100%; justify-content: flex-end; }
+.app-window .bar-num  { font-family: var(--font-mono); font-size: 7.5px; color: var(--ink-4); }
+.app-window .bar-fill { width: 100%; border-radius: 2px 2px 0 0; flex-shrink: 0; }
+.app-window .bar-fill.bl { background: var(--blue); }
+.app-window .bar-fill.gr { background: var(--green); }
+.app-window .bar-fill.am { background: var(--amber); }
+.app-window .bar-fill.ru { background: var(--rust); }
+.app-window .bar-x { font-family: var(--font-mono); font-size: 7.5px; color: var(--ink-4); }
+.app-window .pf-rows { display: flex; flex-direction: column; gap: 7px; }
+.app-window .pf-row  { display: flex; align-items: center; gap: 6px; }
+.app-window .pf-day  { font-family: var(--font-mono); font-size: 8.5px; color: var(--ink-4); width: 28px; flex-shrink: 0; }
+.app-window .pf-track { flex: 1; height: 7px; background: var(--paper-4); border-radius: 5px; display: flex; overflow: hidden; }
+.app-window .pf-pass { height: 100%; background: var(--green); }
+.app-window .pf-warn { height: 100%; background: var(--amber); }
+.app-window .pf-fail { height: 100%; background: var(--rust); }
+.app-window .pf-pct  { font-family: var(--font-mono); font-size: 8.5px; color: var(--ink-3); width: 26px; flex-shrink: 0; text-align: right; }
+.app-window .pf-legend { display: flex; gap: 10px; margin-top: 8px; }
+.app-window .pf-lg-item { display: flex; align-items: center; gap: 4px; font-family: var(--font-mono); font-size: 8px; color: var(--ink-4); }
+.app-window .pf-lg-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.app-window .hbar-list { display: flex; flex-direction: column; gap: 9px; }
+.app-window .hbar-item { display: flex; flex-direction: column; gap: 4px; }
+.app-window .hbar-top  { display: flex; align-items: center; justify-content: space-between; }
+.app-window .hbar-name { font-family: var(--font-body); font-size: 10px; color: var(--ink-3); }
+.app-window .hbar-pct  { font-family: var(--font-mono); font-size: 10px; font-weight: 500; color: var(--ink-2); }
+.app-window .hbar-track { height: 4px; background: var(--paper-4); border-radius: 3px; overflow: hidden; }
+.app-window .hbar-fill { height: 100%; border-radius: 3px; }
+.app-window .hbar-fill.gr { background: var(--green); }
+.app-window .hbar-fill.am { background: var(--amber); }
+.app-window .hbar-fill.bl { background: var(--blue); }
+.app-window .hbar-fill.ru { background: var(--rust); }
+.app-window .mini-tbl { width: 100%; border-collapse: collapse; }
+.app-window .mini-tbl th { font-family: var(--font-mono); font-size: 7.5px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-4); padding: 6px 8px; border-bottom: 1px solid var(--rule); text-align: left; }
+.app-window .mini-tbl td { font-family: var(--font-mono); font-size: 10px; color: var(--ink-2); padding: 7px 8px; border-bottom: 1px solid var(--rule); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.app-window .mini-tbl tr:last-child td { border-bottom: none; }
+.app-window .chip { display: inline-flex; align-items: center; padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 500; }
+.app-window .chip.gr-a { background: var(--green-bg); color: var(--green); }
+.app-window .chip.gr-b { background: var(--blue-bg);  color: var(--blue); }
+.app-window .chip.gr-c { background: var(--amber-bg); color: var(--amber-dk); }
+.app-window .chip.gr-d { background: var(--rust-bg);  color: var(--rust); }
+.app-window .chip.pass { background: var(--green-bg); color: var(--green); }
+.app-window .chip.fail { background: var(--rust-bg);  color: var(--rust); }
+.app-window .chip.warn { background: var(--amber-bg); color: var(--amber-dk); }
+.app-window .alert-list { display: flex; flex-direction: column; gap: 5px; }
+.app-window .al-item { display: flex; align-items: flex-start; gap: 8px; padding: 8px 10px; border-radius: var(--r); border: 1px solid var(--rule); background: var(--paper-2); }
+.app-window .al-item.al-warn { border-color: var(--amber-border); background: var(--amber-bg); }
+.app-window .al-item.al-ok   { border-color: var(--green-border); background: var(--green-bg); }
+.app-window .al-item.al-err  { border-color: var(--rust-border);  background: var(--rust-bg); }
+.app-window .al-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-4); flex-shrink: 0; margin-top: 4px; }
+.app-window .al-item.al-warn .al-dot { background: var(--amber); }
+.app-window .al-item.al-ok   .al-dot { background: var(--green); }
+.app-window .al-item.al-err  .al-dot { background: var(--rust); }
+.app-window .al-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.app-window .al-msg  { font-family: var(--font-body); font-size: 10px; color: var(--ink-2); line-height: 1.4; }
+.app-window .al-time { font-family: var(--font-mono); font-size: 8.5px; color: var(--ink-4); }
+.app-window .kpi-strip { display: flex; gap: 6px; flex-shrink: 0; }
+.app-window .kpi-cell { background: var(--paper-2); border: 1px solid var(--rule); border-radius: var(--r2); padding: 9px 11px; flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.app-window .kpi-label { font-family: var(--font-mono); font-size: 7.5px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-4); }
+.app-window .kpi-val   { font-family: var(--font-display); font-size: 15px; font-weight: 700; color: var(--ink); line-height: 1; font-variant-numeric: tabular-nums; }
+.app-window .kpi-val.c-green { color: var(--green); }
+.app-window .kpi-val.c-blue  { color: var(--blue); }
+.app-window .kpi-val.c-amber { color: var(--amber); }
+.app-window .kpi-val.c-rust  { color: var(--rust); }
+.app-window .kpi-unit { font-size: 9px; font-weight: 500; color: var(--ink-3); }
+.app-window .kpi-sub  { font-family: var(--font-body); font-size: 9px; color: var(--ink-4); }
+.app-window .filter-row { display: flex; align-items: center; gap: 6px; flex-shrink: 0; flex-wrap: wrap; }
+.app-window .tab-grp { display: flex; gap: 2px; }
+.app-window .tab { font-family: var(--font-mono); font-size: 9px; font-weight: 500; color: var(--ink-3); background: transparent; border: 1px solid transparent; border-radius: var(--r); padding: 4px 8px; cursor: pointer; }
+.app-window .tab.on { background: var(--amber-bg); border-color: var(--amber-border); color: var(--amber-dk); }
+.app-window .rep-count { font-family: var(--font-mono); font-size: 8px; color: var(--ink-4); letter-spacing: 1px; }
+.app-window .srch { height: 24px; flex: 1; min-width: 80px; background: var(--paper-2); border: 1px solid var(--rule); border-radius: var(--r); padding: 0 8px; font-family: var(--font-mono); font-size: 9px; color: var(--ink-2); outline: none; }
+.app-window .dsel { height: 24px; background: var(--paper-2); border: 1px solid var(--rule); border-radius: var(--r); padding: 0 6px; font-family: var(--font-mono); font-size: 9px; color: var(--ink-3); cursor: pointer; outline: none; -webkit-appearance: none; }
+.app-window .exp-btn { font-family: var(--font-mono); font-size: 9px; font-weight: 500; color: var(--ink-3); background: transparent; border: 1px solid var(--rule); border-radius: var(--r); padding: 4px 9px; cursor: pointer; display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+.app-window .tbl-wrap { border: 1px solid var(--rule); border-radius: var(--r2); background: var(--paper-2); overflow: auto; flex-shrink: 0; }
+.app-window .dt { width: 100%; border-collapse: collapse; }
+.app-window .dt th { font-family: var(--font-mono); font-size: 8px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-4); padding: 7px 9px; border-bottom: 1px solid var(--rule); text-align: left; background: var(--paper-2); white-space: nowrap; position: sticky; top: 0; }
+.app-window .dt td { font-family: var(--font-mono); font-size: 9.5px; color: var(--ink-2); padding: 6px 9px; border-bottom: 1px solid var(--rule); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.app-window .dt tr:last-child td { border-bottom: none; }
+.app-window .fiber-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; flex-shrink: 0; }
+.app-window .fprop { background: var(--paper-2); border: 1px solid var(--rule); border-radius: var(--r2); padding: 10px 12px; display: flex; flex-direction: column; gap: 3px; }
+.app-window .fprop-label { font-family: var(--font-mono); font-size: 7.5px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-4); }
+.app-window .fprop-val   { font-family: var(--font-display); font-size: 14px; font-weight: 700; color: var(--ink); line-height: 1; }
+.app-window .fprop-unit  { font-size: 9px; font-weight: 500; color: var(--ink-3); }
+.app-window .fprop-range { font-family: var(--font-body); font-size: 8px; color: var(--ink-4); }
+.app-window .fprop-track  { height: 3px; background: var(--paper-4); border-radius: 2px; margin-top: 4px; position: relative; }
+.app-window .fprop-needle { width: 4px; height: 8px; background: var(--blue); border-radius: 1px; position: absolute; top: -2.5px; transform: translateX(-50%); }
+
 /* scroll hint */
 .scroll-hint {
   text-align: center; font-size: 11px; color: oklch(68% 0.008 55);
@@ -450,6 +568,18 @@ body {
 <div class="page-header">
   <h1>Logic 1 — App Wireframes</h1>
   <p>9 screens · 3:2 aspect ratio · Client Review</p>
+</div>
+
+<div class="disclaimer-banner">
+  <div class="disclaimer-ico">&#9888;</div>
+  <div>
+    <div class="disclaimer-title">DEMO DATA — FOR LAYOUT REPRESENTATION ONLY</div>
+    <div class="disclaimer-body">
+      All figures, metrics, KPIs, charts, tables, and alerts shown in the Dashboard and Reports screens are entirely fictional and not derived from any real device, process, or dataset.<br>
+      Numbers such as UV dose readings, pass/fail rates, batch grades, fiber strength values, and session counts are placeholders chosen to demonstrate layout density and visual hierarchy — they carry no factual meaning.<br>
+      The purpose of these screens is solely to show <strong>how the interface will look and behave when connected to real data.</strong>
+    </div>
+  </div>
 </div>
 
 <!-- ══════════════════════════════════ SECTION 1 ══════════════════════════════════ -->
@@ -479,7 +609,7 @@ body {
         </div>
         <div>
           <div class="wf-ld-wordmark">Logic 1</div>
-          <div class="wf-ld-sub">Factory Control</div>
+          <div class="wf-ld-sub">Device Control System</div>
         </div>
       </div>
       <div class="wf-ld-track"><div class="wf-ld-prog"></div></div>
@@ -628,7 +758,7 @@ body {
 
 <!-- ── 4. UV DASHBOARD ── -->
 <div class="screen-wrap">
-  <div class="screen-label"><span>4 · UV Device · Dashboard</span><span class="badge">Live Metrics (TBD)</span></div>
+  <div class="screen-label"><span>4 · UV Device · Dashboard</span><span class="badge">Live Metrics</span></div>
   <div class="app-window">
     <div class="wf-titlebar">
       <div class="wf-tb-brand"><div class="wf-tb-glyph"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg></div><span class="wf-tb-name">Logic 1</span></div>
@@ -650,12 +780,82 @@ body {
         <div class="wf-view">
           <div class="wf-vh">
             <div class="wf-vh-left"><div class="wf-vcrumb">UV Device</div><div class="wf-vtitle">Dashboard</div></div>
-            <div class="wf-conn-badge"><span class="wf-badge-dot"></span>Connected</div>
+            <div class="wf-vh-right">
+              <div class="wf-conn-badge"><span class="wf-badge-dot"></span>Connected</div>
+              <button class="exp-btn"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export</button>
+            </div>
           </div>
-          <div class="wf-ph">
-            <div class="wf-ph-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
-            <div class="wf-ph-t">Dashboard Widgets</div>
-            <div class="wf-ph-s">Live metric widgets defined once device data specification is finalised</div>
+          <!-- KPI Cards -->
+          <div class="dash-grid">
+            <div class="mcard c-blue"><span class="mcard-label">UV Dose</span><span class="mcard-val">487.2<span class="unit"> mJ/cm²</span></span><span class="mcard-sub">Target: 500 · ±5% tolerance</span><span class="mcard-delta up">↑ 2.1% vs yesterday avg</span></div>
+            <div class="mcard"><span class="mcard-label">Avg Cycle Time</span><span class="mcard-val">14.8<span class="unit"> s</span></span><span class="mcard-sub">Last 10 cycles · Best: 12.9 s</span><span class="mcard-delta dn">↓ 0.3 s from 7-day avg</span></div>
+            <div class="mcard c-green"><span class="mcard-label">Pass Rate</span><span class="mcard-val">97.4<span class="unit"> %</span></span><span class="mcard-sub">136 pass · 5 fail · 2 warn</span><span class="mcard-delta up">↑ 1.2% vs yesterday</span></div>
+            <div class="mcard"><span class="mcard-label">Sessions Today</span><span class="mcard-val">143</span><span class="mcard-sub">Since 08:00 · 6 h 52 m elapsed</span><span class="mcard-delta ne">→ 20.9 sessions / hr rate</span></div>
+            <div class="mcard c-amber"><span class="mcard-label">Lamp Life</span><span class="mcard-val">63<span class="unit"> %</span></span><span class="mcard-sub">~1,240 hrs remaining · Flag at 50%</span><span class="mcard-delta dn">↓ 3% consumed this week</span></div>
+            <div class="mcard"><span class="mcard-label">Chamber Temp</span><span class="mcard-val">38.2<span class="unit"> °C</span></span><span class="mcard-sub">Range: 35–42 °C · In bounds ✓</span><span class="mcard-delta ne">→ ±0.4 °C variation today</span></div>
+          </div>
+          <!-- Charts row -->
+          <div class="dash-2col">
+            <div class="chart-box">
+              <div class="chart-hd"><span class="chart-title">Session Volume — 7 Days</span><span class="chart-note">total/day</span></div>
+              <div class="bars-lg">
+                <div class="bar-col"><div class="bar-num">118</div><div class="bar-fill bl" style="height:65%"></div><span class="bar-x">Mon</span></div>
+                <div class="bar-col"><div class="bar-num">142</div><div class="bar-fill bl" style="height:78%"></div><span class="bar-x">Tue</span></div>
+                <div class="bar-col"><div class="bar-num">97</div><div class="bar-fill bl" style="height:53%"></div><span class="bar-x">Wed</span></div>
+                <div class="bar-col"><div class="bar-num">166</div><div class="bar-fill bl" style="height:91%"></div><span class="bar-x">Thu</span></div>
+                <div class="bar-col"><div class="bar-num">151</div><div class="bar-fill bl" style="height:83%"></div><span class="bar-x">Fri</span></div>
+                <div class="bar-col"><div class="bar-num">129</div><div class="bar-fill bl" style="height:71%"></div><span class="bar-x">Sat</span></div>
+                <div class="bar-col"><div class="bar-num">143</div><div class="bar-fill am" style="height:78%"></div><span class="bar-x">Today</span></div>
+              </div>
+            </div>
+            <div class="chart-box">
+              <div class="chart-hd"><span class="chart-title">Pass / Fail Breakdown</span><span class="chart-note">% of daily sessions</span></div>
+              <div class="pf-rows">
+                <div class="pf-row"><span class="pf-day">Mon</span><div class="pf-track"><div class="pf-pass" style="flex:0 0 95%"></div><div class="pf-fail" style="flex:0 0 5%"></div></div><span class="pf-pct">95%</span></div>
+                <div class="pf-row"><span class="pf-day">Tue</span><div class="pf-track"><div class="pf-pass" style="flex:0 0 97%"></div><div class="pf-fail" style="flex:0 0 3%"></div></div><span class="pf-pct">97%</span></div>
+                <div class="pf-row"><span class="pf-day">Wed</span><div class="pf-track"><div class="pf-pass" style="flex:0 0 92%"></div><div class="pf-warn" style="flex:0 0 3%"></div><div class="pf-fail" style="flex:0 0 5%"></div></div><span class="pf-pct">92%</span></div>
+                <div class="pf-row"><span class="pf-day">Thu</span><div class="pf-track"><div class="pf-pass" style="flex:0 0 99%"></div><div class="pf-fail" style="flex:0 0 1%"></div></div><span class="pf-pct">99%</span></div>
+                <div class="pf-row"><span class="pf-day">Fri</span><div class="pf-track"><div class="pf-pass" style="flex:0 0 96%"></div><div class="pf-warn" style="flex:0 0 2%"></div><div class="pf-fail" style="flex:0 0 2%"></div></div><span class="pf-pct">96%</span></div>
+                <div class="pf-row"><span class="pf-day">Today</span><div class="pf-track"><div class="pf-pass" style="flex:0 0 97%"></div><div class="pf-warn" style="flex:0 0 1%"></div><div class="pf-fail" style="flex:0 0 2%"></div></div><span class="pf-pct">97%</span></div>
+              </div>
+              <div class="pf-legend"><div class="pf-lg-item"><div class="pf-lg-dot" style="background:var(--green)"></div>Pass</div><div class="pf-lg-item"><div class="pf-lg-dot" style="background:var(--amber)"></div>Warn</div><div class="pf-lg-item"><div class="pf-lg-dot" style="background:var(--rust)"></div>Fail</div></div>
+            </div>
+          </div>
+          <!-- Component health + recent sessions -->
+          <div class="dash-2col">
+            <div class="chart-box">
+              <div class="chart-hd"><span class="chart-title">Component Health</span><span class="chart-note">live status</span></div>
+              <div class="hbar-list">
+                <div class="hbar-item"><div class="hbar-top"><span class="hbar-name">UV Lamp Intensity</span><span class="hbar-pct">87%</span></div><div class="hbar-track"><div class="hbar-fill gr" style="width:87%"></div></div></div>
+                <div class="hbar-item"><div class="hbar-top"><span class="hbar-name">Cooling System</span><span class="hbar-pct">94%</span></div><div class="hbar-track"><div class="hbar-fill gr" style="width:94%"></div></div></div>
+                <div class="hbar-item"><div class="hbar-top"><span class="hbar-name">Air Filter Efficiency</span><span class="hbar-pct">63%</span></div><div class="hbar-track"><div class="hbar-fill am" style="width:63%"></div></div></div>
+                <div class="hbar-item"><div class="hbar-top"><span class="hbar-name">Power Supply</span><span class="hbar-pct">100%</span></div><div class="hbar-track"><div class="hbar-fill gr" style="width:100%"></div></div></div>
+                <div class="hbar-item"><div class="hbar-top"><span class="hbar-name">Lamp Life Remaining</span><span class="hbar-pct">63%</span></div><div class="hbar-track"><div class="hbar-fill am" style="width:63%"></div></div></div>
+                <div class="hbar-item"><div class="hbar-top"><span class="hbar-name">Reflector Efficiency</span><span class="hbar-pct">79%</span></div><div class="hbar-track"><div class="hbar-fill bl" style="width:79%"></div></div></div>
+              </div>
+            </div>
+            <div class="chart-box">
+              <div class="chart-hd"><span class="chart-title">Recent Sessions</span><span class="chart-note">last 5</span></div>
+              <table class="mini-tbl">
+                <thead><tr><th>Session</th><th>Time</th><th>Dose</th><th>Temp</th><th>Result</th></tr></thead>
+                <tbody>
+                  <tr><td>UV-20143</td><td>14:52</td><td>487.2</td><td>38.2°C</td><td><span class="chip pass">Pass</span></td></tr>
+                  <tr><td>UV-20142</td><td>14:50</td><td>501.4</td><td>38.0°C</td><td><span class="chip pass">Pass</span></td></tr>
+                  <tr><td>UV-20141</td><td>14:48</td><td>483.8</td><td>38.5°C</td><td><span class="chip pass">Pass</span></td></tr>
+                  <tr><td>UV-20140</td><td>14:47</td><td>441.7</td><td>39.1°C</td><td><span class="chip fail">Fail</span></td></tr>
+                  <tr><td>UV-20139</td><td>14:45</td><td>498.3</td><td>37.8°C</td><td><span class="chip pass">Pass</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Alerts -->
+          <div class="chart-box">
+            <div class="chart-hd"><span class="chart-title">System Alerts</span><span class="chart-note">3 active</span></div>
+            <div class="alert-list">
+              <div class="al-item al-warn"><div class="al-dot"></div><div class="al-body"><div class="al-msg">Lamp life at 63% — schedule preventive maintenance within 2 weeks. ~1,240 hrs remaining at current usage.</div><div class="al-time">Triggered 09:14 · threshold: 65% · service within 14 days</div></div></div>
+              <div class="al-item al-warn"><div class="al-dot"></div><div class="al-body"><div class="al-msg">Air filter efficiency at 63% and declining. Replace before dropping below 50%.</div><div class="al-time">Triggered 11:30 · ~3 weeks to critical</div></div></div>
+              <div class="al-item al-ok"><div class="al-dot"></div><div class="al-body"><div class="al-msg">UV dose calibration verified. Measured deviation ±2.3% — within ±5% spec.</div><div class="al-time">Last verified 3 days ago · next in 7 days</div></div></div>
+            </div>
           </div>
         </div>
       </div>
@@ -666,6 +866,7 @@ body {
 <!-- ── 5. UV REPORTS ── -->
 <div class="screen-wrap">
   <div class="screen-label"><span>5 · UV Device · Reports</span><span class="badge">Session History</span></div>
+  <!-- note: table scrolls within the window -->
   <div class="app-window">
     <div class="wf-titlebar">
       <div class="wf-tb-brand"><div class="wf-tb-glyph"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg></div><span class="wf-tb-name">Logic 1</span></div>
@@ -689,10 +890,40 @@ body {
             <div class="wf-vh-left"><div class="wf-vcrumb">UV Device</div><div class="wf-vtitle">Reports</div></div>
             <div class="wf-conn-badge"><span class="wf-badge-dot"></span>Connected</div>
           </div>
-          <div class="wf-ph">
-            <div class="wf-ph-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-            <div class="wf-ph-t">Session Reports</div>
-            <div class="wf-ph-s">Report fields and layout defined once device data specification is available</div>
+          <!-- KPI Strip -->
+          <div class="kpi-strip">
+            <div class="kpi-cell"><span class="kpi-label">Total Sessions</span><span class="kpi-val">143</span><span class="kpi-sub">Since 08:00 today</span></div>
+            <div class="kpi-cell"><span class="kpi-label">Passed</span><span class="kpi-val c-green">136</span><span class="kpi-sub">95.1% of total</span></div>
+            <div class="kpi-cell"><span class="kpi-label">Failed</span><span class="kpi-val c-rust">5</span><span class="kpi-sub">3.5% — under threshold</span></div>
+            <div class="kpi-cell"><span class="kpi-label">Warnings</span><span class="kpi-val c-amber">2</span><span class="kpi-sub">1.4% — marginal dose</span></div>
+            <div class="kpi-cell"><span class="kpi-label">Avg UV Dose</span><span class="kpi-val c-blue">493.4</span><span class="kpi-sub">mJ/cm² · target 500</span></div>
+            <div class="kpi-cell"><span class="kpi-label">Avg Cycle</span><span class="kpi-val">14.8<span class="kpi-unit"> s</span></span><span class="kpi-sub">Best: 12.9 s today</span></div>
+          </div>
+          <!-- Filter row -->
+          <div class="filter-row">
+            <div class="tab-grp"><button class="tab on">All</button><button class="tab">Pass</button><button class="tab">Fail</button><button class="tab">Warn</button></div>
+            <span class="rep-count">143 records</span>
+            <input class="srch" type="search" placeholder="Search session ID, operator…">
+            <select class="dsel"><option>Today</option><option>Last 7 days</option><option>Custom</option></select>
+            <button class="exp-btn"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>CSV</button>
+          </div>
+          <!-- Data table -->
+          <div class="tbl-wrap">
+            <table class="dt">
+              <thead><tr><th>Session ID</th><th>Time</th><th>Duration</th><th>UV Dose</th><th>Peak Int.</th><th>Temp</th><th>Humidity</th><th>Operator</th><th>Result</th></tr></thead>
+              <tbody>
+                <tr><td>UV-20143</td><td>14:52:07</td><td>14.8 s</td><td>487.2 mJ/cm²</td><td>32.8 mW/cm²</td><td>38.2 °C</td><td>42%</td><td>Op-A</td><td><span class="chip pass">Pass</span></td></tr>
+                <tr><td>UV-20142</td><td>14:50:31</td><td>15.1 s</td><td>501.4 mJ/cm²</td><td>33.2 mW/cm²</td><td>38.0 °C</td><td>41%</td><td>Op-A</td><td><span class="chip pass">Pass</span></td></tr>
+                <tr><td>UV-20141</td><td>14:48:54</td><td>14.6 s</td><td>483.8 mJ/cm²</td><td>33.1 mW/cm²</td><td>38.5 °C</td><td>43%</td><td>Op-B</td><td><span class="chip pass">Pass</span></td></tr>
+                <tr><td>UV-20140</td><td>14:47:12</td><td>13.2 s</td><td>441.7 mJ/cm²</td><td>33.5 mW/cm²</td><td>39.1 °C</td><td>44%</td><td>Op-B</td><td><span class="chip fail">Fail</span></td></tr>
+                <tr><td>UV-20139</td><td>14:45:38</td><td>15.0 s</td><td>498.3 mJ/cm²</td><td>33.2 mW/cm²</td><td>37.8 °C</td><td>41%</td><td>Op-A</td><td><span class="chip pass">Pass</span></td></tr>
+                <tr><td>UV-20138</td><td>14:43:55</td><td>14.9 s</td><td>494.1 mJ/cm²</td><td>33.1 mW/cm²</td><td>38.3 °C</td><td>42%</td><td>Op-C</td><td><span class="chip pass">Pass</span></td></tr>
+                <tr><td>UV-20137</td><td>14:42:11</td><td>15.3 s</td><td>508.6 mJ/cm²</td><td>33.2 mW/cm²</td><td>37.9 °C</td><td>40%</td><td>Op-C</td><td><span class="chip pass">Pass</span></td></tr>
+                <tr><td>UV-20136</td><td>14:40:29</td><td>14.7 s</td><td>490.9 mJ/cm²</td><td>33.4 mW/cm²</td><td>38.1 °C</td><td>42%</td><td>Op-A</td><td><span class="chip pass">Pass</span></td></tr>
+                <tr><td>UV-20135</td><td>14:38:44</td><td>14.4 s</td><td>477.3 mJ/cm²</td><td>33.1 mW/cm²</td><td>38.7 °C</td><td>43%</td><td>Op-B</td><td><span class="chip warn">Warn</span></td></tr>
+                <tr><td>UV-20134</td><td>14:37:02</td><td>15.2 s</td><td>503.8 mJ/cm²</td><td>33.1 mW/cm²</td><td>37.6 °C</td><td>41%</td><td>Op-B</td><td><span class="chip pass">Pass</span></td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -825,7 +1056,7 @@ body {
 
 <!-- ── 8. COTTON DASHBOARD ── -->
 <div class="screen-wrap">
-  <div class="screen-label"><span>8 · Cotton Grading · Dashboard</span><span class="badge">Live Metrics (TBD)</span></div>
+  <div class="screen-label"><span>8 · Cotton Grading · Dashboard</span><span class="badge">Live Metrics</span></div>
   <div class="app-window">
     <div class="wf-titlebar">
       <div class="wf-tb-brand"><div class="wf-tb-glyph"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg></div><span class="wf-tb-name">Logic 1</span></div>
@@ -848,12 +1079,88 @@ body {
         <div class="wf-view">
           <div class="wf-vh">
             <div class="wf-vh-left"><div class="wf-vcrumb">Cotton Grading</div><div class="wf-vtitle">Dashboard</div></div>
-            <div class="wf-conn-badge"><span class="wf-badge-dot"></span>Connected</div>
+            <div class="wf-vh-right">
+              <div class="wf-conn-badge"><span class="wf-badge-dot"></span>Connected</div>
+              <button class="exp-btn"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export</button>
+            </div>
           </div>
-          <div class="wf-ph">
-            <div class="wf-ph-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
-            <div class="wf-ph-t">Dashboard Widgets</div>
-            <div class="wf-ph-s">Grading metrics and bale management widgets coming soon</div>
+          <!-- KPI Cards -->
+          <div class="dash-grid">
+            <div class="mcard"><span class="mcard-label">Bales Graded</span><span class="mcard-val">248</span><span class="mcard-sub">Today since 07:30 · 7 h 22 m</span><span class="mcard-delta up">↑ 12 more than yesterday</span></div>
+            <div class="mcard c-green"><span class="mcard-label">Avg Grade</span><span class="mcard-val">B+</span><span class="mcard-sub">Target: B · Above target ✓</span><span class="mcard-delta up">↑ Improved from B yesterday</span></div>
+            <div class="mcard c-blue"><span class="mcard-label">Micronaire</span><span class="mcard-val">4.2</span><span class="mcard-sub">Ideal: 3.7–4.9 · In range ✓</span><span class="mcard-delta ne">→ Stable · ±0.2 variation</span></div>
+            <div class="mcard"><span class="mcard-label">Fiber Strength</span><span class="mcard-val">29.1<span class="unit"> g/tex</span></span><span class="mcard-sub">Target: ≥27.0 · OK ✓</span><span class="mcard-delta up">↑ 1.3 g/tex vs yesterday</span></div>
+            <div class="mcard c-amber"><span class="mcard-label">Trash Content</span><span class="mcard-val">0.8<span class="unit"> %</span></span><span class="mcard-sub">Max: 1.5% · Well within range</span><span class="mcard-delta dn">↓ 0.1% from yesterday</span></div>
+            <div class="mcard c-green"><span class="mcard-label">Throughput</span><span class="mcard-val">31<span class="unit"> /hr</span></span><span class="mcard-sub">Target: 28/hr · +3 over target</span><span class="mcard-delta up">↑ Peak 34/hr at 10:00</span></div>
+          </div>
+          <!-- Fiber properties -->
+          <div class="fiber-grid">
+            <div class="fprop"><span class="fprop-label">Staple Length</span><span class="fprop-val">28.4<span class="fprop-unit"> mm</span></span><span class="fprop-range">Range: 25–32 mm · Target ≥26</span><div class="fprop-track"><div class="fprop-needle" style="left:47%"></div></div></div>
+            <div class="fprop"><span class="fprop-label">Uniformity Index</span><span class="fprop-val">83.2<span class="fprop-unit"> %</span></span><span class="fprop-range">Range: 78–88% · Ideal ≥82%</span><div class="fprop-track"><div class="fprop-needle" style="left:52%"></div></div></div>
+            <div class="fprop"><span class="fprop-label">Elongation</span><span class="fprop-val">6.8<span class="fprop-unit"> %</span></span><span class="fprop-range">Range: 5.0–9.0% · Nominal</span><div class="fprop-track"><div class="fprop-needle" style="left:47%"></div></div></div>
+            <div class="fprop"><span class="fprop-label">Color Grade</span><span class="fprop-val">31-3</span><span class="fprop-range">Standard white · Rd 78 / +b 8.4</span><div class="fprop-track"><div class="fprop-needle" style="left:55%"></div></div></div>
+          </div>
+          <!-- Charts -->
+          <div class="dash-2col">
+            <div class="chart-box">
+              <div class="chart-hd"><span class="chart-title">Grade Distribution — Today</span><span class="chart-note">248 bales</span></div>
+              <div class="bars-lg">
+                <div class="bar-col"><div class="bar-num">42</div><div class="bar-fill gr" style="height:34%"></div><span class="bar-x">A</span></div>
+                <div class="bar-col"><div class="bar-num">101</div><div class="bar-fill bl" style="height:81%"></div><span class="bar-x">B+</span></div>
+                <div class="bar-col"><div class="bar-num">72</div><div class="bar-fill bl" style="height:58%"></div><span class="bar-x">B</span></div>
+                <div class="bar-col"><div class="bar-num">24</div><div class="bar-fill am" style="height:19%"></div><span class="bar-x">C</span></div>
+                <div class="bar-col"><div class="bar-num">9</div><div class="bar-fill ru" style="height:7%"></div><span class="bar-x">D</span></div>
+              </div>
+            </div>
+            <div class="chart-box">
+              <div class="chart-hd"><span class="chart-title">Hourly Throughput</span><span class="chart-note">bales/hr · target 28</span></div>
+              <div class="bars-lg">
+                <div class="bar-col"><div class="bar-num">24</div><div class="bar-fill am" style="height:49%"></div><span class="bar-x">08</span></div>
+                <div class="bar-col"><div class="bar-num">29</div><div class="bar-fill bl" style="height:59%"></div><span class="bar-x">09</span></div>
+                <div class="bar-col"><div class="bar-num">34</div><div class="bar-fill gr" style="height:69%"></div><span class="bar-x">10</span></div>
+                <div class="bar-col"><div class="bar-num">31</div><div class="bar-fill bl" style="height:63%"></div><span class="bar-x">11</span></div>
+                <div class="bar-col"><div class="bar-num">28</div><div class="bar-fill bl" style="height:57%"></div><span class="bar-x">12</span></div>
+                <div class="bar-col"><div class="bar-num">33</div><div class="bar-fill gr" style="height:67%"></div><span class="bar-x">13</span></div>
+                <div class="bar-col"><div class="bar-num">31</div><div class="bar-fill bl" style="height:63%"></div><span class="bar-x">14</span></div>
+                <div class="bar-col"><div class="bar-num">16</div><div class="bar-fill am" style="height:32%"></div><span class="bar-x">15→</span></div>
+              </div>
+            </div>
+          </div>
+          <!-- Machine health + recent batches -->
+          <div class="dash-2col">
+            <div class="chart-box">
+              <div class="chart-hd"><span class="chart-title">Machine Health</span><span class="chart-note">sensor readings</span></div>
+              <div class="hbar-list">
+                <div class="hbar-item"><div class="hbar-top"><span class="hbar-name">Fiber Sensor Array</span><span class="hbar-pct">98%</span></div><div class="hbar-track"><div class="hbar-fill gr" style="width:98%"></div></div></div>
+                <div class="hbar-item"><div class="hbar-top"><span class="hbar-name">Trash Separator</span><span class="hbar-pct">82%</span></div><div class="hbar-track"><div class="hbar-fill bl" style="width:82%"></div></div></div>
+                <div class="hbar-item"><div class="hbar-top"><span class="hbar-name">Micronaire Probe</span><span class="hbar-pct">95%</span></div><div class="hbar-track"><div class="hbar-fill gr" style="width:95%"></div></div></div>
+                <div class="hbar-item"><div class="hbar-top"><span class="hbar-name">Intake Roller</span><span class="hbar-pct">71%</span></div><div class="hbar-track"><div class="hbar-fill am" style="width:71%"></div></div></div>
+                <div class="hbar-item"><div class="hbar-top"><span class="hbar-name">Color Sensor</span><span class="hbar-pct">99%</span></div><div class="hbar-track"><div class="hbar-fill gr" style="width:99%"></div></div></div>
+              </div>
+            </div>
+            <div class="chart-box">
+              <div class="chart-hd"><span class="chart-title">Recent Batches</span><span class="chart-note">last 5</span></div>
+              <table class="mini-tbl">
+                <thead><tr><th>Batch ID</th><th>Time</th><th>Bales</th><th>Avg Grade</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td>CT-B0248</td><td>14:51</td><td>12</td><td><span class="chip gr-b">B+</span></td><td><span class="chip pass">Graded</span></td></tr>
+                  <tr><td>CT-B0247</td><td>14:43</td><td>15</td><td><span class="chip gr-a">A</span></td><td><span class="chip pass">Graded</span></td></tr>
+                  <tr><td>CT-B0246</td><td>14:35</td><td>11</td><td><span class="chip gr-b">B+</span></td><td><span class="chip pass">Graded</span></td></tr>
+                  <tr><td>CT-B0245</td><td>14:28</td><td>14</td><td><span class="chip gr-c">C</span></td><td><span class="chip warn">Review</span></td></tr>
+                  <tr><td>CT-B0244</td><td>14:20</td><td>13</td><td><span class="chip gr-b">B</span></td><td><span class="chip pass">Graded</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Quality alerts -->
+          <div class="chart-box">
+            <div class="chart-hd"><span class="chart-title">Quality Alerts</span><span class="chart-note">4 active</span></div>
+            <div class="alert-list">
+              <div class="al-item al-err"><div class="al-dot"></div><div class="al-body"><div class="al-msg">Batch CT-B0242 rejected — micronaire 5.1 (threshold 5.0) and strength 24.8 g/tex below 27.0 minimum. Segregated for re-processing.</div><div class="al-time">14:05:13 · CT-B0242 · 10 bales affected</div></div></div>
+              <div class="al-item al-warn"><div class="al-dot"></div><div class="al-body"><div class="al-msg">CT-B0245 micronaire at 4.8 — approaching B+ upper limit. Monitor next 2 batches from same intake feed.</div><div class="al-time">14:28:05 · review recommended</div></div></div>
+              <div class="al-item al-warn"><div class="al-dot"></div><div class="al-body"><div class="al-msg">Trash trending upward over last 3 batches: 0.7% → 0.8% → 0.9%. Inspect intake cleaning rollers.</div><div class="al-time">Detected 13:40 · gradual drift · action recommended</div></div></div>
+              <div class="al-item al-ok"><div class="al-dot"></div><div class="al-body"><div class="al-msg">All 6 fiber property sensors calibrated. Micronaire, colorimeter, and strength tester all nominal.</div><div class="al-time">Calibrated 08:00 · next in 72 hrs · OK</div></div></div>
+            </div>
           </div>
         </div>
       </div>
@@ -863,7 +1170,7 @@ body {
 
 <!-- ── 9. COTTON REPORTS ── -->
 <div class="screen-wrap">
-  <div class="screen-label"><span>9 · Cotton Grading · Reports</span><span class="badge">Batch Reports (TBD)</span></div>
+  <div class="screen-label"><span>9 · Cotton Grading · Reports</span><span class="badge">Batch Reports</span></div>
   <div class="app-window">
     <div class="wf-titlebar">
       <div class="wf-tb-brand"><div class="wf-tb-glyph"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg></div><span class="wf-tb-name">Logic 1</span></div>
@@ -888,10 +1195,40 @@ body {
             <div class="wf-vh-left"><div class="wf-vcrumb">Cotton Grading</div><div class="wf-vtitle">Reports</div></div>
             <div class="wf-conn-badge"><span class="wf-badge-dot"></span>Connected</div>
           </div>
-          <div class="wf-ph">
-            <div class="wf-ph-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-            <div class="wf-ph-t">Batch Reports</div>
-            <div class="wf-ph-s">Report fields and layout defined once grading data specification is available</div>
+          <!-- KPI Strip -->
+          <div class="kpi-strip">
+            <div class="kpi-cell"><span class="kpi-label">Total Bales</span><span class="kpi-val">248</span><span class="kpi-sub">Today's production</span></div>
+            <div class="kpi-cell"><span class="kpi-label">A / B+ Grade</span><span class="kpi-val c-green">143</span><span class="kpi-sub">57.7% premium yield</span></div>
+            <div class="kpi-cell"><span class="kpi-label">B Grade</span><span class="kpi-val c-blue">72</span><span class="kpi-sub">29.0% standard yield</span></div>
+            <div class="kpi-cell"><span class="kpi-label">Below B</span><span class="kpi-val c-amber">24</span><span class="kpi-sub">9.7% — review queue</span></div>
+            <div class="kpi-cell"><span class="kpi-label">Rejected</span><span class="kpi-val c-rust">9</span><span class="kpi-sub">3.6% — re-process</span></div>
+            <div class="kpi-cell"><span class="kpi-label">Avg Strength</span><span class="kpi-val">29.1</span><span class="kpi-sub">g/tex · target ≥27.0</span></div>
+          </div>
+          <!-- Filter row -->
+          <div class="filter-row">
+            <div class="tab-grp"><button class="tab on">All</button><button class="tab">A / B+</button><button class="tab">B</button><button class="tab">Review</button></div>
+            <span class="rep-count">248 bales</span>
+            <input class="srch" type="search" placeholder="Search batch ID, grade…">
+            <select class="dsel"><option>Today</option><option>Last 7 days</option><option>Custom</option></select>
+            <button class="exp-btn"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>CSV</button>
+          </div>
+          <!-- Data table -->
+          <div class="tbl-wrap">
+            <table class="dt">
+              <thead><tr><th>Batch ID</th><th>Time</th><th>Bales</th><th>Avg Grade</th><th>Mic</th><th>Strength</th><th>Staple</th><th>Uniformity</th><th>Trash</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>CT-B0248</td><td>14:51:00</td><td>12</td><td><span class="chip gr-b">B+</span></td><td>4.2</td><td>29.1 g/tex</td><td>28.4 mm</td><td>83.2%</td><td>0.8%</td><td><span class="chip pass">Graded</span></td></tr>
+                <tr><td>CT-B0247</td><td>14:43:22</td><td>15</td><td><span class="chip gr-a">A</span></td><td>4.1</td><td>31.4 g/tex</td><td>29.2 mm</td><td>84.7%</td><td>0.6%</td><td><span class="chip pass">Graded</span></td></tr>
+                <tr><td>CT-B0246</td><td>14:35:44</td><td>11</td><td><span class="chip gr-b">B+</span></td><td>4.4</td><td>28.7 g/tex</td><td>27.8 mm</td><td>82.9%</td><td>0.7%</td><td><span class="chip pass">Graded</span></td></tr>
+                <tr><td>CT-B0245</td><td>14:28:05</td><td>14</td><td><span class="chip gr-c">C</span></td><td>4.8</td><td>25.2 g/tex</td><td>26.1 mm</td><td>80.3%</td><td>1.1%</td><td><span class="chip warn">Review</span></td></tr>
+                <tr><td>CT-B0244</td><td>14:20:31</td><td>13</td><td><span class="chip gr-b">B</span></td><td>4.3</td><td>27.9 g/tex</td><td>28.0 mm</td><td>82.5%</td><td>0.9%</td><td><span class="chip pass">Graded</span></td></tr>
+                <tr><td>CT-B0243</td><td>14:12:47</td><td>16</td><td><span class="chip gr-a">A</span></td><td>4.0</td><td>32.1 g/tex</td><td>29.8 mm</td><td>85.1%</td><td>0.5%</td><td><span class="chip pass">Graded</span></td></tr>
+                <tr><td>CT-B0242</td><td>14:05:13</td><td>10</td><td><span class="chip gr-d">D</span></td><td>5.1</td><td>24.8 g/tex</td><td>25.4 mm</td><td>78.9%</td><td>1.4%</td><td><span class="chip fail">Rejected</span></td></tr>
+                <tr><td>CT-B0241</td><td>13:57:29</td><td>15</td><td><span class="chip gr-b">B+</span></td><td>4.2</td><td>29.4 g/tex</td><td>28.3 mm</td><td>83.5%</td><td>0.8%</td><td><span class="chip pass">Graded</span></td></tr>
+                <tr><td>CT-B0240</td><td>13:49:45</td><td>12</td><td><span class="chip gr-a">A</span></td><td>3.9</td><td>31.8 g/tex</td><td>29.5 mm</td><td>84.4%</td><td>0.6%</td><td><span class="chip pass">Graded</span></td></tr>
+                <tr><td>CT-B0239</td><td>13:42:00</td><td>14</td><td><span class="chip gr-b">B</span></td><td>4.5</td><td>27.3 g/tex</td><td>27.5 mm</td><td>81.8%</td><td>1.0%</td><td><span class="chip pass">Graded</span></td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -900,7 +1237,7 @@ body {
 </div>
 </div><!-- end Cotton group -->
 
-<div class="scroll-hint">— 9 screens · Logic 1 v0.1 —</div>
+<div class="scroll-hint">— 9 screens · Logic 1 v0.2 · Dashboard &amp; Reports updated —</div>
 
 </body>
 </html>
