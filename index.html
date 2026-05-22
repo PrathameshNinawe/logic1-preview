@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logic 1 — App Wireframes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── PAGE CHROME ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #d8d4cd;
+  font-family: 'Inter', sans-serif;
+  padding: 48px 32px 64px;
+}
+.page-header {
+  text-align: center;
+  margin-bottom: 52px;
+}
+.page-header h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px; font-weight: 700; letter-spacing: -.4px;
+  color: oklch(14% 0.008 55);
+}
+.page-header p {
+  margin-top: 5px; font-size: 12px; color: oklch(52% 0.008 55);
+  font-family: 'IBM Plex Mono', monospace; letter-spacing: .5px;
+}
+
+.group-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; font-weight: 500; letter-spacing: 2px;
+  text-transform: uppercase; color: oklch(52% 0.008 55);
+  margin-bottom: 20px;
+}
+.screen-wrap { margin-bottom: 44px; }
+.screen-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; font-weight: 500; color: oklch(33% 0.008 55);
+  margin-bottom: 8px; display: flex; align-items: center; gap: 8px;
+}
+.screen-label .badge {
+  font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
+  background: oklch(86% 0.008 68); color: oklch(52% 0.008 55);
+  padding: 2px 7px; border-radius: 20px;
+}
+.section-divider {
+  border: none; border-top: 1.5px dashed oklch(68% 0.008 55);
+  margin: 44px 0;
+}
+
+/* ── APP WINDOW SHELL ── */
+.app-window {
+  width: 100%; max-width: 900px;
+  aspect-ratio: 3 / 2;
+  border-radius: 8px; overflow: hidden;
+  box-shadow: 0 8px 40px oklch(14% 0.008 55 / 0.22), 0 2px 8px oklch(14% 0.008 55 / 0.10);
+  display: flex; flex-direction: column;
+  background: oklch(96.5% 0.007 68);
+  /* All children live inside this 3:2 box */
+}
+
+/* ── DESIGN TOKENS (same as real app) ── */
+.app-window {
+  --paper:    oklch(96.5% 0.007 68);
+  --paper-2:  oklch(99%   0.005 68);
+  --paper-3:  oklch(93%   0.008 68);
+  --paper-4:  oklch(89%   0.009 68);
+  --rule:     oklch(86%   0.008 68);
+  --rule-2:   oklch(78%   0.009 68);
+
+  --ink:      oklch(14%   0.008 55);
+  --ink-2:    oklch(33%   0.008 55);
+  --ink-3:    oklch(52%   0.008 55);
+  --ink-4:    oklch(68%   0.008 55);
+
+  --amber:        oklch(66%  0.17 80);
+  --amber-dk:     oklch(52%  0.15 80);
+  --amber-bg:     oklch(95%  0.05 82);
+  --amber-border: oklch(82%  0.09 82);
+
+  --green:        oklch(48%  0.17 148);
+  --green-dk:     oklch(40%  0.15 148);
+  --green-bg:     oklch(94%  0.04 148);
+  --green-border: oklch(82%  0.07 148);
+
+  --rust:         oklch(54%  0.19 30);
+  --rust-bg:      oklch(96%  0.04 30);
+  --rust-border:  oklch(83%  0.09 30);
+
+  --blue:         oklch(46%  0.14 233);
+  --blue-bg:      oklch(94%  0.04 233);
+  --blue-border:  oklch(82%  0.07 233);
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-mono:    'IBM Plex Mono', monospace;
+  --r:  4px; --r2: 6px; --r3: 10px;
+}
+
+/* ── TITLEBAR ── */
+.wf-titlebar {
+  height: 38px; flex-shrink: 0;
+  background: var(--paper-2);
+  border-bottom: 1px solid var(--rule);
+  display: flex; align-items: center;
+}
+.wf-tb-brand {
+  display: flex; align-items: center; gap: 9px;
+  padding-left: 14px; flex: 1;
+}
+.wf-tb-glyph {
+  width: 20px; height: 20px; border-radius: var(--r);
+  background: var(--ink);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.wf-tb-name {
+  font-family: var(--font-display); font-size: 12px; font-weight: 600;
+  color: var(--ink-2); letter-spacing: -.1px;
+}
+.wf-tb-controls {
+  display: flex; align-items: center; padding-right: 6px; gap: 2px;
+}
+.wf-tb-btn {
+  width: 36px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink-4);
+}
+
+/* ── LOADER SCREEN ── */
+.wf-loader {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 40px;
+  background: var(--paper);
+}
+.wf-ld-logo { display: flex; align-items: center; gap: 14px; }
+.wf-ld-glyph {
+  width: 42px; height: 42px; border-radius: var(--r2);
+  background: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+}
+.wf-ld-wordmark {
+  font-family: var(--font-display); font-size: 24px; font-weight: 700;
+  color: var(--ink); letter-spacing: -.4px;
+}
+.wf-ld-sub {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 2.5px; text-transform: uppercase; color: var(--ink-4);
+  margin-top: 3px;
+}
+.wf-ld-track {
+  width: 100px; height: 1px; background: var(--rule); position: relative; overflow: hidden;
+}
+.wf-ld-prog {
+  height: 1px; background: var(--ink); position: absolute; left: 0; width: 60%;
+}
+
+/* ── HOME SCREEN ── */
+.wf-home {
+  flex: 1; display: flex; flex-direction: column; background: var(--paper); min-height: 0;
+}
+.wf-home-hd {
+  height: 54px; padding: 0 36px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--rule); flex-shrink: 0;
+}
+.wf-home-hd-brand { display: flex; align-items: center; gap: 10px; }
+.wf-home-hd-glyph {
+  width: 26px; height: 26px; border-radius: var(--r);
+  background: var(--ink); display: flex; align-items: center; justify-content: center;
+}
+.wf-home-hd-name {
+  font-family: var(--font-display); font-size: 14px; font-weight: 700; color: var(--ink);
+}
+.wf-home-hd-tag {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--ink-4);
+}
+.wf-home-panels { display: flex; flex: 1; min-height: 0; }
+.wf-hpanel {
+  flex: 1; display: flex; flex-direction: column;
+  padding: 36px 40px; position: relative; overflow: hidden;
+}
+.wf-hpanel + .wf-hpanel { border-left: 1px solid var(--rule); }
+.wf-hpanel.live { background: var(--paper-2); }
+.wf-hpanel-num {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 1.5px; color: var(--ink-4); margin-bottom: 28px;
+}
+.wf-hpanel-ico {
+  width: 50px; height: 50px; border-radius: var(--r2);
+  display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
+}
+.wf-hpanel.panel-uv .wf-hpanel-ico { background: var(--blue-bg); border: 1px solid var(--blue-border); }
+.wf-hpanel.panel-ct .wf-hpanel-ico { background: var(--amber-bg); border: 1px solid var(--amber-border); }
+.wf-hpanel-name {
+  font-family: var(--font-display); font-size: 26px; font-weight: 700;
+  color: var(--ink); letter-spacing: -.5px; line-height: 1.1; margin-bottom: 6px;
+}
+.wf-hpanel-sub {
+  font-family: var(--font-body); font-size: 13px; color: var(--ink-3);
+}
+.wf-hpanel-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 16px; }
+.wf-hpanel-tag {
+  font-family: var(--font-mono); font-size: 9px; font-weight: 500;
+  letter-spacing: 1px; text-transform: uppercase; color: var(--ink-4);
+  background: var(--paper-3); border: 1px solid var(--rule);
+  padding: 3px 8px; border-radius: var(--r);
+}
+.wf-hpanel-bottom {
+  margin-top: auto; padding-top: 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.wf-hpanel-status {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 1px; text-transform: uppercase;
+  padding: 3px 8px; border-radius: var(--r);
+}
+.wf-hpanel-status.connected { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+.wf-hpanel-status.nodev { background: var(--paper-3); color: var(--ink-4); border: 1px solid var(--rule); }
+.wf-sdot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+.connected .wf-sdot { background: var(--green); }
+.nodev .wf-sdot { background: var(--ink-4); }
+.wf-hpanel-open {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--font-body); font-size: 12px; font-weight: 500; color: var(--ink-4);
+}
+
+/* disconnected panel */
+.wf-hpanel.dim { opacity: 0.45; }
+
+/* ── APP SHELL ── */
+.wf-app {
+  flex: 1; display: flex; min-height: 0;
+}
+
+/* ── SIDEBAR ── */
+.wf-sb {
+  width: 196px; min-width: 196px; flex-shrink: 0;
+  background: var(--paper-2);
+  border-right: 1px solid var(--rule);
+  display: flex; flex-direction: column;
+  overflow: hidden; padding-top: 12px;
+}
+.wf-sb-brand {
+  display: flex; align-items: center; gap: 9px;
+  padding: 0 14px; margin-bottom: 14px; flex-shrink: 0;
+}
+.wf-sb-glyph {
+  width: 24px; height: 24px; border-radius: var(--r);
+  background: var(--ink); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.wf-sb-name {
+  font-family: var(--font-display); font-size: 13px; font-weight: 700;
+  color: var(--ink); letter-spacing: -.2px;
+}
+.wf-sb-divider { height: 1px; background: var(--rule); margin: 0 14px 6px; flex-shrink: 0; }
+
+.wf-sb-nav { flex: 1; display: flex; flex-direction: column; padding: 0 8px; }
+.wf-nav-mod-label {
+  font-family: var(--font-mono); font-size: 9px; font-weight: 500;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-4);
+  padding: 8px 10px 5px;
+}
+.wf-ni {
+  height: 36px; width: 100%; border-radius: var(--r);
+  display: flex; align-items: center; gap: 9px; padding: 0 10px;
+  color: var(--ink-3);
+}
+.wf-ni-label { font-family: var(--font-body); font-size: 13px; font-weight: 500; }
+.wf-ni.act { background: var(--amber-bg); color: var(--amber-dk); }
+
+.wf-sb-foot { flex-shrink: 0; padding: 0 8px 10px; display: flex; flex-direction: column; }
+.wf-sb-foot-rule { height: 1px; background: var(--rule); margin: 0 6px 6px; }
+.wf-ni-back { height: 36px; width: 100%; border-radius: var(--r); display: flex; align-items: center; gap: 9px; padding: 0 10px; color: var(--ink-3); }
+.wf-ni-back .wf-ni-label { font-family: var(--font-body); font-size: 13px; font-weight: 500; }
+
+/* ── MAIN ── */
+.wf-main { flex: 1; overflow: hidden; background: var(--paper); display: flex; flex-direction: column; }
+
+.wf-view {
+  flex: 1; min-height: 0; display: flex; flex-direction: column;
+  padding: 24px 28px; gap: 18px; overflow: hidden;
+}
+.wf-view.scrollable { overflow-y: auto; }
+
+.wf-vh {
+  display: flex; align-items: flex-end; justify-content: space-between; flex-shrink: 0;
+}
+.wf-vh-left { display: flex; flex-direction: column; gap: 3px; }
+.wf-vcrumb {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-4);
+}
+.wf-vtitle {
+  font-family: var(--font-display); font-size: 22px; font-weight: 700;
+  color: var(--ink); letter-spacing: -.4px; line-height: 1.1;
+}
+.wf-vh-right { display: flex; align-items: center; gap: 10px; }
+
+.wf-stat-bar {
+  display: flex; align-items: stretch;
+  border: 1px solid var(--rule); border-radius: var(--r2);
+  overflow: hidden; flex-shrink: 0; background: var(--paper-2);
+}
+.wf-stat-cell { padding: 7px 16px; display: flex; flex-direction: column; gap: 3px; min-width: 90px; }
+.wf-stat-cell + .wf-stat-cell { border-left: 1px solid var(--rule); }
+.wf-stat-label {
+  font-family: var(--font-mono); font-size: 9px; font-weight: 500;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-4);
+}
+.wf-stat-val {
+  font-family: var(--font-display); font-size: 14px; font-weight: 600;
+  color: var(--ink); font-variant-numeric: tabular-nums; line-height: 1.2;
+}
+.wf-stat-val.standby { color: var(--ink-3); }
+.wf-stat-val.running { color: var(--amber); }
+.wf-stat-val.green { color: var(--green); }
+
+.wf-conn-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 1px; text-transform: uppercase;
+  background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border);
+  padding: 6px 14px; border-radius: var(--r2);
+}
+.wf-badge-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--green); flex-shrink: 0;
+}
+.wf-conn-dot {
+  display: inline-block; width: 5px; height: 5px; border-radius: 50%;
+  background: var(--green); margin-right: 4px; vertical-align: middle;
+}
+
+/* ── CONTROL BUTTONS ── */
+.wf-ctrl-row { display: flex; gap: 10px; flex-shrink: 0; }
+.wf-cbtn {
+  height: 70px; flex: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px;
+  border-radius: var(--r2);
+}
+.wf-cbtn-lbl {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 1.5px; text-transform: uppercase;
+}
+.wf-cbtn-start { background: var(--green); color: oklch(97% 0.005 148); }
+.wf-cbtn-stop  { background: var(--rust);  color: oklch(97% 0.005 30); }
+.wf-cbtn-reset { background: transparent; color: var(--ink-3); border: 1.5px solid var(--rule); }
+.wf-cbtn-stop.dim { opacity: .22; }
+
+/* ── LOG PANEL ── */
+.wf-logpanel {
+  flex: 1; min-height: 0;
+  background: var(--paper-2); border: 1px solid var(--rule); border-radius: var(--r2);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.wf-lp-hd {
+  padding: 10px 16px; border-bottom: 1px solid var(--rule);
+  display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+}
+.wf-lp-title {
+  font-family: var(--font-mono); font-size: 9.5px; font-weight: 500;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-4);
+}
+.wf-lp-right { display: flex; align-items: center; gap: 14px; }
+.wf-lp-cycles {
+  font-family: var(--font-mono); font-size: 11px; color: var(--ink-3);
+}
+.wf-lp-cycles-val { color: var(--ink); font-weight: 500; }
+.wf-lp-live {
+  display: flex; align-items: center; gap: 5px;
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500; color: var(--green);
+}
+.wf-lp-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); }
+.wf-log-body { flex: 1; min-height: 0; overflow: hidden; padding: 6px 0; }
+.wf-le {
+  display: grid; grid-template-columns: 72px 40px 1fr; gap: 10px;
+  align-items: baseline; padding: 4px 16px;
+  font-family: var(--font-mono); font-size: 11.5px;
+}
+.wf-le-t  { color: var(--ink-4); font-size: 10.5px; font-variant-numeric: tabular-nums; }
+.wf-le-lv { font-size: 9.5px; font-weight: 500; letter-spacing: .8px; text-transform: uppercase; }
+.wf-le-lv.ok   { color: var(--green); }
+.wf-le-lv.info { color: var(--blue); }
+.wf-le-lv.warn { color: var(--amber); }
+.wf-le-m  { color: var(--ink-2); font-size: 11.5px; }
+
+/* ── PLACEHOLDER (for TBD views) ── */
+.wf-ph {
+  flex: 1; min-height: 0;
+  background: var(--paper-2); border: 1px solid var(--rule); border-radius: var(--r2);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+}
+.wf-ph-ico {
+  width: 44px; height: 44px; border-radius: var(--r2);
+  background: var(--paper-3); border: 1px solid var(--rule);
+  display: flex; align-items: center; justify-content: center; color: var(--ink-4);
+}
+.wf-ph-t { font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--ink-3); }
+.wf-ph-s {
+  font-family: var(--font-body); font-size: 12px; color: var(--ink-4);
+  text-align: center; max-width: 260px; line-height: 1.6;
+}
+
+/* ── BALE MANAGEMENT ── */
+.wf-bale-grid-wrap {
+  flex: 1; min-height: 0;
+  border: 1px solid var(--rule); border-radius: var(--r2);
+  background: var(--paper-2); padding: 14px; overflow: hidden;
+}
+.wf-bale-grid {
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  gap: 7px; height: 100%;
+}
+.wf-bale {
+  border-radius: var(--r); border: 1.5px solid var(--rule);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 1px; padding: 4px 2px; background: var(--paper);
+}
+.wf-bale.grade-a { border-color: var(--green); background: var(--green-bg); }
+.wf-bale.grade-b { border-color: var(--blue); background: var(--blue-bg); }
+.wf-bale.grade-c { border-color: var(--amber); background: var(--amber-bg); }
+.wf-bale.pending { border-style: dashed; opacity: 0.5; }
+.wf-bale-num { font-family: var(--font-mono); font-size: 8px; color: var(--ink-4); }
+.wf-bale-score { font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--ink); }
+.wf-bale-rank {
+  font-family: var(--font-mono); font-size: 8px; font-weight: 500;
+  padding: 0px 4px; border-radius: 3px; color: white;
+}
+.wf-bale-rank.a { background: var(--green); }
+.wf-bale-rank.b { background: var(--blue); }
+.wf-bale-rank.c { background: var(--amber); }
+
+/* scroll hint */
+.scroll-hint {
+  text-align: center; font-size: 11px; color: oklch(68% 0.008 55);
+  margin-top: 12px; font-family: 'IBM Plex Mono', monospace; letter-spacing: .5px;
+}
+.screen-group { margin-bottom: 56px; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Logic 1 — App Wireframes</h1>
+  <p>9 screens · 3:2 aspect ratio · Client Review</p>
+</div>
+
+<!-- ══════════════════════════════════ SECTION 1 ══════════════════════════════════ -->
+<div class="screen-group">
+<div class="group-label">Section 1 — Startup</div>
+
+<!-- ── 1. LOADER ── -->
+<div class="screen-wrap">
+  <div class="screen-label"><span>1 · Loader Screen</span><span class="badge">Boot</span></div>
+  <div class="app-window">
+    <div class="wf-titlebar">
+      <div class="wf-tb-brand">
+        <div class="wf-tb-glyph">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg>
+        </div>
+        <span class="wf-tb-name">Logic 1</span>
+      </div>
+      <div class="wf-tb-controls">
+        <div class="wf-tb-btn"><svg width="11" height="2" viewBox="0 0 11 2"><rect width="11" height="1.5" fill="currentColor" rx=".75"/></svg></div>
+        <div class="wf-tb-btn"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="1.5" y1="1.5" x2="8.5" y2="8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="8.5" y1="1.5" x2="1.5" y2="8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      </div>
+    </div>
+    <div class="wf-loader">
+      <div class="wf-ld-logo">
+        <div class="wf-ld-glyph">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg>
+        </div>
+        <div>
+          <div class="wf-ld-wordmark">Logic 1</div>
+          <div class="wf-ld-sub">Factory Control</div>
+        </div>
+      </div>
+      <div class="wf-ld-track"><div class="wf-ld-prog"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 2. HOME SCREEN ── -->
+<div class="screen-wrap">
+  <div class="screen-label"><span>2 · Home Screen</span><span class="badge">Hub</span></div>
+  <div class="app-window">
+    <div class="wf-titlebar">
+      <div class="wf-tb-brand">
+        <div class="wf-tb-glyph"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg></div>
+        <span class="wf-tb-name">Logic 1</span>
+      </div>
+      <div class="wf-tb-controls">
+        <div class="wf-tb-btn"><svg width="11" height="2" viewBox="0 0 11 2"><rect width="11" height="1.5" fill="currentColor" rx=".75"/></svg></div>
+        <div class="wf-tb-btn"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="1.5" y1="1.5" x2="8.5" y2="8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="8.5" y1="1.5" x2="1.5" y2="8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      </div>
+    </div>
+    <div class="wf-home">
+      <div class="wf-home-hd">
+        <div class="wf-home-hd-brand">
+          <div class="wf-home-hd-glyph"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg></div>
+          <span class="wf-home-hd-name">Logic 1</span>
+        </div>
+        <span class="wf-home-hd-tag">Device Control System</span>
+      </div>
+      <div class="wf-home-panels">
+        <!-- UV — connected -->
+        <div class="wf-hpanel panel-uv live">
+          <div class="wf-hpanel-num">01 / UV DEVICE</div>
+          <div class="wf-hpanel-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></svg>
+          </div>
+          <div class="wf-hpanel-name">UV Device</div>
+          <div class="wf-hpanel-sub">UV Testing System</div>
+          <div class="wf-hpanel-tags">
+            <span class="wf-hpanel-tag">Control</span>
+            <span class="wf-hpanel-tag">Dashboard</span>
+            <span class="wf-hpanel-tag">Reports</span>
+          </div>
+          <div class="wf-hpanel-bottom">
+            <div class="wf-hpanel-status connected"><span class="wf-sdot"></span>Connected</div>
+            <div class="wf-hpanel-open">Open Control Panel <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+          </div>
+        </div>
+        <!-- Cotton — disconnected -->
+        <div class="wf-hpanel panel-ct dim">
+          <div class="wf-hpanel-num">02 / COTTON GRADING</div>
+          <div class="wf-hpanel-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.8"><rect x="2" y="8" width="20" height="13" rx="2"/><path d="M16 21V6a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v15"/></svg>
+          </div>
+          <div class="wf-hpanel-name">Cotton Grading</div>
+          <div class="wf-hpanel-sub">Grading &amp; Bale Management</div>
+          <div class="wf-hpanel-tags">
+            <span class="wf-hpanel-tag">Control</span>
+            <span class="wf-hpanel-tag">Bale Mgmt</span>
+            <span class="wf-hpanel-tag">Dashboard</span>
+            <span class="wf-hpanel-tag">Reports</span>
+          </div>
+          <div class="wf-hpanel-bottom">
+            <div class="wf-hpanel-status nodev"><span class="wf-sdot"></span>Not Connected</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div><!-- end group 1 -->
+
+<hr class="section-divider">
+
+<!-- ══════════════════════════════════ SECTION 2 — UV ══════════════════════════════════ -->
+<div class="screen-group">
+<div class="group-label">Section 2 — UV Device Module</div>
+
+<!-- ── 3. UV CONTROL ── -->
+<div class="screen-wrap">
+  <div class="screen-label"><span>3 · UV Device · Control</span><span class="badge">Default View</span></div>
+  <div class="app-window">
+    <div class="wf-titlebar">
+      <div class="wf-tb-brand"><div class="wf-tb-glyph"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg></div><span class="wf-tb-name">Logic 1</span></div>
+      <div class="wf-tb-controls"><div class="wf-tb-btn"><svg width="11" height="2" viewBox="0 0 11 2"><rect width="11" height="1.5" fill="currentColor" rx=".75"/></svg></div><div class="wf-tb-btn"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="1.5" y1="1.5" x2="8.5" y2="8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="8.5" y1="1.5" x2="1.5" y2="8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div></div>
+    </div>
+    <div class="wf-app">
+      <!-- Sidebar -->
+      <div class="wf-sb">
+        <div class="wf-sb-brand"><div class="wf-sb-glyph"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg></div><span class="wf-sb-name">Logic 1</span></div>
+        <div class="wf-sb-divider"></div>
+        <div class="wf-sb-nav">
+          <div class="wf-nav-mod-label">UV Device</div>
+          <div class="wf-ni act"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="wf-ni-label">Control</span></div>
+          <div class="wf-ni"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span class="wf-ni-label">Dashboard</span></div>
+          <div class="wf-ni"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span class="wf-ni-label">Reports</span></div>
+        </div>
+        <div class="wf-sb-foot">
+          <div class="wf-sb-foot-rule"></div>
+          <div class="wf-ni-back"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span class="wf-ni-label">Exit Module</span></div>
+        </div>
+      </div>
+      <!-- Main -->
+      <div class="wf-main">
+        <div class="wf-view">
+          <div class="wf-vh">
+            <div class="wf-vh-left">
+              <div class="wf-vcrumb">UV Device</div>
+              <div class="wf-vtitle">Control Panel</div>
+            </div>
+            <div class="wf-vh-right">
+              <div class="wf-stat-bar">
+                <div class="wf-stat-cell"><span class="wf-stat-label">State</span><span class="wf-stat-val standby">Standby</span></div>
+                <div class="wf-stat-cell"><span class="wf-stat-label">Uptime</span><span class="wf-stat-val">00:00:00</span></div>
+                <div class="wf-stat-cell"><span class="wf-stat-label">Connection</span><span class="wf-stat-val green"><span class="wf-conn-dot"></span>Online</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="wf-ctrl-row">
+            <div class="wf-cbtn wf-cbtn-start"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg><span class="wf-cbtn-lbl">Start</span></div>
+            <div class="wf-cbtn wf-cbtn-stop dim"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="6" y="6" width="12" height="12"/></svg><span class="wf-cbtn-lbl">Stop</span></div>
+            <div class="wf-cbtn wf-cbtn-reset"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.85"/></svg><span class="wf-cbtn-lbl">Reset</span></div>
+          </div>
+          <div class="wf-logpanel">
+            <div class="wf-lp-hd">
+              <span class="wf-lp-title">Live Output</span>
+              <div class="wf-lp-right">
+                <span class="wf-lp-cycles">Cycles: <span class="wf-lp-cycles-val">0</span></span>
+                <span class="wf-lp-live"><span class="wf-lp-dot"></span>Streaming</span>
+              </div>
+            </div>
+            <div class="wf-log-body">
+              <div class="wf-le"><span class="wf-le-t">10:31:02</span><span class="wf-le-lv info">INFO</span><span class="wf-le-m">Device initializing</span></div>
+              <div class="wf-le"><span class="wf-le-t">10:31:04</span><span class="wf-le-lv info">INFO</span><span class="wf-le-m">Running self-diagnostic</span></div>
+              <div class="wf-le"><span class="wf-le-t">10:31:06</span><span class="wf-le-lv ok">OK</span><span class="wf-le-m">Diagnostic complete — all systems nominal</span></div>
+              <div class="wf-le"><span class="wf-le-t">10:31:08</span><span class="wf-le-lv info">INFO</span><span class="wf-le-m">Lamp warm-up sequence started</span></div>
+              <div class="wf-le"><span class="wf-le-t">10:31:12</span><span class="wf-le-lv ok">OK</span><span class="wf-le-m">Operating temp reached — 42 °C</span></div>
+              <div class="wf-le"><span class="wf-le-t">10:31:14</span><span class="wf-le-lv info">INFO</span><span class="wf-le-m">Awaiting command</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 4. UV DASHBOARD ── -->
+<div class="screen-wrap">
+  <div class="screen-label"><span>4 · UV Device · Dashboard</span><span class="badge">Live Metrics (TBD)</span></div>
+  <div class="app-window">
+    <div class="wf-titlebar">
+      <div class="wf-tb-brand"><div class="wf-tb-glyph"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg></div><span class="wf-tb-name">Logic 1</span></div>
+      <div class="wf-tb-controls"><div class="wf-tb-btn"><svg width="11" height="2" viewBox="0 0 11 2"><rect width="11" height="1.5" fill="currentColor" rx=".75"/></svg></div><div class="wf-tb-btn"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="1.5" y1="1.5" x2="8.5" y2="8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="8.5" y1="1.5" x2="1.5" y2="8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div></div>
+    </div>
+    <div class="wf-app">
+      <div class="wf-sb">
+        <div class="wf-sb-brand"><div class="wf-sb-glyph"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg></div><span class="wf-sb-name">Logic 1</span></div>
+        <div class="wf-sb-divider"></div>
+        <div class="wf-sb-nav">
+          <div class="wf-nav-mod-label">UV Device</div>
+          <div class="wf-ni"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="wf-ni-label">Control</span></div>
+          <div class="wf-ni act"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span class="wf-ni-label">Dashboard</span></div>
+          <div class="wf-ni"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span class="wf-ni-label">Reports</span></div>
+        </div>
+        <div class="wf-sb-foot"><div class="wf-sb-foot-rule"></div><div class="wf-ni-back"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span class="wf-ni-label">Exit Module</span></div></div>
+      </div>
+      <div class="wf-main">
+        <div class="wf-view">
+          <div class="wf-vh">
+            <div class="wf-vh-left"><div class="wf-vcrumb">UV Device</div><div class="wf-vtitle">Dashboard</div></div>
+            <div class="wf-conn-badge"><span class="wf-badge-dot"></span>Connected</div>
+          </div>
+          <div class="wf-ph">
+            <div class="wf-ph-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+            <div class="wf-ph-t">Dashboard Widgets</div>
+            <div class="wf-ph-s">Live metric widgets defined once device data specification is finalised</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 5. UV REPORTS ── -->
+<div class="screen-wrap">
+  <div class="screen-label"><span>5 · UV Device · Reports</span><span class="badge">Session History</span></div>
+  <div class="app-window">
+    <div class="wf-titlebar">
+      <div class="wf-tb-brand"><div class="wf-tb-glyph"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg></div><span class="wf-tb-name">Logic 1</span></div>
+      <div class="wf-tb-controls"><div class="wf-tb-btn"><svg width="11" height="2" viewBox="0 0 11 2"><rect width="11" height="1.5" fill="currentColor" rx=".75"/></svg></div><div class="wf-tb-btn"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="1.5" y1="1.5" x2="8.5" y2="8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="8.5" y1="1.5" x2="1.5" y2="8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div></div>
+    </div>
+    <div class="wf-app">
+      <div class="wf-sb">
+        <div class="wf-sb-brand"><div class="wf-sb-glyph"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg></div><span class="wf-sb-name">Logic 1</span></div>
+        <div class="wf-sb-divider"></div>
+        <div class="wf-sb-nav">
+          <div class="wf-nav-mod-label">UV Device</div>
+          <div class="wf-ni"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="wf-ni-label">Control</span></div>
+          <div class="wf-ni"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span class="wf-ni-label">Dashboard</span></div>
+          <div class="wf-ni act"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span class="wf-ni-label">Reports</span></div>
+        </div>
+        <div class="wf-sb-foot"><div class="wf-sb-foot-rule"></div><div class="wf-ni-back"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span class="wf-ni-label">Exit Module</span></div></div>
+      </div>
+      <div class="wf-main">
+        <div class="wf-view">
+          <div class="wf-vh">
+            <div class="wf-vh-left"><div class="wf-vcrumb">UV Device</div><div class="wf-vtitle">Reports</div></div>
+            <div class="wf-conn-badge"><span class="wf-badge-dot"></span>Connected</div>
+          </div>
+          <div class="wf-ph">
+            <div class="wf-ph-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div class="wf-ph-t">Session Reports</div>
+            <div class="wf-ph-s">Report fields and layout defined once device data specification is available</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div><!-- end UV group -->
+
+<hr class="section-divider">
+
+<!-- ══════════════════════════════════ SECTION 3 — COTTON ══════════════════════════════════ -->
+<div class="screen-group">
+<div class="group-label">Section 3 — Cotton Grading Module</div>
+
+<!-- ── 6. COTTON CONTROL ── -->
+<div class="screen-wrap">
+  <div class="screen-label"><span>6 · Cotton Grading · Control</span><span class="badge">Default View</span></div>
+  <div class="app-window">
+    <div class="wf-titlebar">
+      <div class="wf-tb-brand"><div class="wf-tb-glyph"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg></div><span class="wf-tb-name">Logic 1</span></div>
+      <div class="wf-tb-controls"><div class="wf-tb-btn"><svg width="11" height="2" viewBox="0 0 11 2"><rect width="11" height="1.5" fill="currentColor" rx=".75"/></svg></div><div class="wf-tb-btn"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="1.5" y1="1.5" x2="8.5" y2="8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="8.5" y1="1.5" x2="1.5" y2="8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div></div>
+    </div>
+    <div class="wf-app">
+      <div class="wf-sb">
+        <div class="wf-sb-brand"><div class="wf-sb-glyph"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg></div><span class="wf-sb-name">Logic 1</span></div>
+        <div class="wf-sb-divider"></div>
+        <div class="wf-sb-nav">
+          <div class="wf-nav-mod-label">Cotton Grading</div>
+          <div class="wf-ni act"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="wf-ni-label">Control</span></div>
+          <div class="wf-ni"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 12 12 17 22 12"/><polyline points="2 17 12 22 22 17"/></svg><span class="wf-ni-label">Bale Management</span></div>
+          <div class="wf-ni"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span class="wf-ni-label">Dashboard</span></div>
+          <div class="wf-ni"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span class="wf-ni-label">Reports</span></div>
+        </div>
+        <div class="wf-sb-foot"><div class="wf-sb-foot-rule"></div><div class="wf-ni-back"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span class="wf-ni-label">Exit Module</span></div></div>
+      </div>
+      <div class="wf-main">
+        <div class="wf-view">
+          <div class="wf-vh">
+            <div class="wf-vh-left"><div class="wf-vcrumb">Cotton Grading</div><div class="wf-vtitle">Control Panel</div></div>
+            <div class="wf-vh-right">
+              <div class="wf-stat-bar">
+                <div class="wf-stat-cell"><span class="wf-stat-label">State</span><span class="wf-stat-val standby">Standby</span></div>
+                <div class="wf-stat-cell"><span class="wf-stat-label">Uptime</span><span class="wf-stat-val">00:00:00</span></div>
+                <div class="wf-stat-cell"><span class="wf-stat-label">Connection</span><span class="wf-stat-val green"><span class="wf-conn-dot"></span>Online</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="wf-ctrl-row">
+            <div class="wf-cbtn wf-cbtn-start"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg><span class="wf-cbtn-lbl">Start</span></div>
+            <div class="wf-cbtn wf-cbtn-stop dim"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="6" y="6" width="12" height="12"/></svg><span class="wf-cbtn-lbl">Stop</span></div>
+            <div class="wf-cbtn wf-cbtn-reset"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.85"/></svg><span class="wf-cbtn-lbl">Reset</span></div>
+          </div>
+          <div class="wf-logpanel">
+            <div class="wf-lp-hd">
+              <span class="wf-lp-title">Live Output</span>
+              <div class="wf-lp-right">
+                <span class="wf-lp-cycles">Batches: <span class="wf-lp-cycles-val">0</span></span>
+                <span class="wf-lp-live"><span class="wf-lp-dot"></span>Streaming</span>
+              </div>
+            </div>
+            <div class="wf-log-body">
+              <div class="wf-le"><span class="wf-le-t">10:31:02</span><span class="wf-le-lv info">INFO</span><span class="wf-le-m">Grading system initializing</span></div>
+              <div class="wf-le"><span class="wf-le-t">10:31:04</span><span class="wf-le-lv info">INFO</span><span class="wf-le-m">Calibrating sensors</span></div>
+              <div class="wf-le"><span class="wf-le-t">10:31:07</span><span class="wf-le-lv ok">OK</span><span class="wf-le-m">Sensor calibration complete</span></div>
+              <div class="wf-le"><span class="wf-le-t">10:31:09</span><span class="wf-le-lv info">INFO</span><span class="wf-le-m">Loading grade parameters</span></div>
+              <div class="wf-le"><span class="wf-le-t">10:31:11</span><span class="wf-le-lv ok">OK</span><span class="wf-le-m">Grade table loaded — 5 classes active</span></div>
+              <div class="wf-le"><span class="wf-le-t">10:31:13</span><span class="wf-le-lv info">INFO</span><span class="wf-le-m">Awaiting command</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 7. COTTON BALE MANAGEMENT ── -->
+<div class="screen-wrap">
+  <div class="screen-label"><span>7 · Cotton Grading · Bale Management</span><span class="badge">Optimization Grid</span></div>
+  <div class="app-window">
+    <div class="wf-titlebar">
+      <div class="wf-tb-brand"><div class="wf-tb-glyph"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg></div><span class="wf-tb-name">Logic 1</span></div>
+      <div class="wf-tb-controls"><div class="wf-tb-btn"><svg width="11" height="2" viewBox="0 0 11 2"><rect width="11" height="1.5" fill="currentColor" rx=".75"/></svg></div><div class="wf-tb-btn"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="1.5" y1="1.5" x2="8.5" y2="8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="8.5" y1="1.5" x2="1.5" y2="8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div></div>
+    </div>
+    <div class="wf-app">
+      <div class="wf-sb">
+        <div class="wf-sb-brand"><div class="wf-sb-glyph"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg></div><span class="wf-sb-name">Logic 1</span></div>
+        <div class="wf-sb-divider"></div>
+        <div class="wf-sb-nav">
+          <div class="wf-nav-mod-label">Cotton Grading</div>
+          <div class="wf-ni"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="wf-ni-label">Control</span></div>
+          <div class="wf-ni act"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 12 12 17 22 12"/><polyline points="2 17 12 22 22 17"/></svg><span class="wf-ni-label">Bale Management</span></div>
+          <div class="wf-ni"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span class="wf-ni-label">Dashboard</span></div>
+          <div class="wf-ni"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span class="wf-ni-label">Reports</span></div>
+        </div>
+        <div class="wf-sb-foot"><div class="wf-sb-foot-rule"></div><div class="wf-ni-back"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span class="wf-ni-label">Exit Module</span></div></div>
+      </div>
+      <div class="wf-main">
+        <div class="wf-view">
+          <div class="wf-vh">
+            <div class="wf-vh-left"><div class="wf-vcrumb">Cotton Grading</div><div class="wf-vtitle">Bale Management</div></div>
+            <div class="wf-conn-badge"><span class="wf-badge-dot"></span>Connected</div>
+          </div>
+          <div class="wf-bale-grid-wrap">
+            <div class="wf-bale-grid">
+              <div class="wf-bale grade-a"><div class="wf-bale-num">#01</div><div class="wf-bale-score">94</div><div class="wf-bale-rank a">A</div></div>
+              <div class="wf-bale grade-b"><div class="wf-bale-num">#02</div><div class="wf-bale-score">81</div><div class="wf-bale-rank b">B</div></div>
+              <div class="wf-bale grade-a"><div class="wf-bale-num">#03</div><div class="wf-bale-score">96</div><div class="wf-bale-rank a">A</div></div>
+              <div class="wf-bale grade-c"><div class="wf-bale-num">#04</div><div class="wf-bale-score">67</div><div class="wf-bale-rank c">C</div></div>
+              <div class="wf-bale grade-b"><div class="wf-bale-num">#05</div><div class="wf-bale-score">78</div><div class="wf-bale-rank b">B</div></div>
+              <div class="wf-bale grade-a"><div class="wf-bale-num">#06</div><div class="wf-bale-score">91</div><div class="wf-bale-rank a">A</div></div>
+              <div class="wf-bale grade-b"><div class="wf-bale-num">#07</div><div class="wf-bale-score">83</div><div class="wf-bale-rank b">B</div></div>
+              <div class="wf-bale grade-a"><div class="wf-bale-num">#08</div><div class="wf-bale-score">95</div><div class="wf-bale-rank a">A</div></div>
+              <div class="wf-bale grade-c"><div class="wf-bale-num">#09</div><div class="wf-bale-score">62</div><div class="wf-bale-rank c">C</div></div>
+              <div class="wf-bale grade-b"><div class="wf-bale-num">#10</div><div class="wf-bale-score">77</div><div class="wf-bale-rank b">B</div></div>
+              <div class="wf-bale grade-a"><div class="wf-bale-num">#11</div><div class="wf-bale-score">93</div><div class="wf-bale-rank a">A</div></div>
+              <div class="wf-bale grade-b"><div class="wf-bale-num">#12</div><div class="wf-bale-score">80</div><div class="wf-bale-rank b">B</div></div>
+              <div class="wf-bale pending"><div class="wf-bale-num">#13</div><div class="wf-bale-score">—</div></div>
+              <div class="wf-bale pending"><div class="wf-bale-num">#14</div><div class="wf-bale-score">—</div></div>
+              <div class="wf-bale pending"><div class="wf-bale-num">#15</div><div class="wf-bale-score">—</div></div>
+              <div class="wf-bale pending"><div class="wf-bale-num">#16</div><div class="wf-bale-score">—</div></div>
+              <div class="wf-bale pending"><div class="wf-bale-num">#17</div><div class="wf-bale-score">—</div></div>
+              <div class="wf-bale pending"><div class="wf-bale-num">#18</div><div class="wf-bale-score">—</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 8. COTTON DASHBOARD ── -->
+<div class="screen-wrap">
+  <div class="screen-label"><span>8 · Cotton Grading · Dashboard</span><span class="badge">Live Metrics (TBD)</span></div>
+  <div class="app-window">
+    <div class="wf-titlebar">
+      <div class="wf-tb-brand"><div class="wf-tb-glyph"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg></div><span class="wf-tb-name">Logic 1</span></div>
+      <div class="wf-tb-controls"><div class="wf-tb-btn"><svg width="11" height="2" viewBox="0 0 11 2"><rect width="11" height="1.5" fill="currentColor" rx=".75"/></svg></div><div class="wf-tb-btn"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="1.5" y1="1.5" x2="8.5" y2="8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="8.5" y1="1.5" x2="1.5" y2="8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div></div>
+    </div>
+    <div class="wf-app">
+      <div class="wf-sb">
+        <div class="wf-sb-brand"><div class="wf-sb-glyph"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg></div><span class="wf-sb-name">Logic 1</span></div>
+        <div class="wf-sb-divider"></div>
+        <div class="wf-sb-nav">
+          <div class="wf-nav-mod-label">Cotton Grading</div>
+          <div class="wf-ni"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="wf-ni-label">Control</span></div>
+          <div class="wf-ni"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 12 12 17 22 12"/><polyline points="2 17 12 22 22 17"/></svg><span class="wf-ni-label">Bale Management</span></div>
+          <div class="wf-ni act"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span class="wf-ni-label">Dashboard</span></div>
+          <div class="wf-ni"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span class="wf-ni-label">Reports</span></div>
+        </div>
+        <div class="wf-sb-foot"><div class="wf-sb-foot-rule"></div><div class="wf-ni-back"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span class="wf-ni-label">Exit Module</span></div></div>
+      </div>
+      <div class="wf-main">
+        <div class="wf-view">
+          <div class="wf-vh">
+            <div class="wf-vh-left"><div class="wf-vcrumb">Cotton Grading</div><div class="wf-vtitle">Dashboard</div></div>
+            <div class="wf-conn-badge"><span class="wf-badge-dot"></span>Connected</div>
+          </div>
+          <div class="wf-ph">
+            <div class="wf-ph-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+            <div class="wf-ph-t">Dashboard Widgets</div>
+            <div class="wf-ph-s">Grading metrics and bale management widgets coming soon</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 9. COTTON REPORTS ── -->
+<div class="screen-wrap">
+  <div class="screen-label"><span>9 · Cotton Grading · Reports</span><span class="badge">Batch Reports (TBD)</span></div>
+  <div class="app-window">
+    <div class="wf-titlebar">
+      <div class="wf-tb-brand"><div class="wf-tb-glyph"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg></div><span class="wf-tb-name">Logic 1</span></div>
+      <div class="wf-tb-controls"><div class="wf-tb-btn"><svg width="11" height="2" viewBox="0 0 11 2"><rect width="11" height="1.5" fill="currentColor" rx=".75"/></svg></div><div class="wf-tb-btn"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="1.5" y1="1.5" x2="8.5" y2="8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="8.5" y1="1.5" x2="1.5" y2="8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div></div>
+    </div>
+    <div class="wf-app">
+      <div class="wf-sb">
+        <div class="wf-sb-brand"><div class="wf-sb-glyph"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg></div><span class="wf-sb-name">Logic 1</span></div>
+        <div class="wf-sb-divider"></div>
+        <div class="wf-sb-nav">
+          <div class="wf-nav-mod-label">Cotton Grading</div>
+          <div class="wf-ni"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="wf-ni-label">Control</span></div>
+          <div class="wf-ni"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 12 12 17 22 12"/><polyline points="2 17 12 22 22 17"/></svg><span class="wf-ni-label">Bale Management</span></div>
+          <div class="wf-ni"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span class="wf-ni-label">Dashboard</span></div>
+          <div class="wf-ni act"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span class="wf-ni-label">Reports</span></div>
+        </div>
+        <div class="wf-sb-foot"><div class="wf-sb-foot-rule"></div><div class="wf-ni-back"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span class="wf-ni-label">Exit Module</span></div></div>
+      </div>
+      <div class="wf-main">
+        <div class="wf-view">
+          <div class="wf-vh">
+            <div class="wf-vh-left"><div class="wf-vcrumb">Cotton Grading</div><div class="wf-vtitle">Reports</div></div>
+            <div class="wf-conn-badge"><span class="wf-badge-dot"></span>Connected</div>
+          </div>
+          <div class="wf-ph">
+            <div class="wf-ph-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div class="wf-ph-t">Batch Reports</div>
+            <div class="wf-ph-s">Report fields and layout defined once grading data specification is available</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div><!-- end Cotton group -->
+
+<div class="scroll-hint">— 9 screens · Logic 1 v0.1 —</div>
+
+</body>
+</html>
