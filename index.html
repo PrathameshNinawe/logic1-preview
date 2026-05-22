@@ -32,9 +32,9 @@ body {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 10px; font-weight: 500; letter-spacing: 2px;
   text-transform: uppercase; color: oklch(52% 0.008 55);
-  margin-bottom: 20px;
+  margin-bottom: 20px; max-width: 900px; margin-left: auto; margin-right: auto;
 }
-.screen-wrap { margin-bottom: 44px; }
+.screen-wrap { margin-bottom: 44px; max-width: 900px; margin-left: auto; margin-right: auto; }
 .screen-label {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px; font-weight: 500; color: oklch(33% 0.008 55);
@@ -47,12 +47,13 @@ body {
 }
 .section-divider {
   border: none; border-top: 1.5px dashed oklch(68% 0.008 55);
-  margin: 44px 0;
+  margin: 44px auto; max-width: 900px;
 }
 
 /* ── APP WINDOW SHELL ── */
 .app-window {
   width: 100%; max-width: 900px;
+  margin-left: auto; margin-right: auto;
   aspect-ratio: 3 / 2;
   border-radius: 8px; overflow: hidden;
   box-shadow: 0 8px 40px oklch(14% 0.008 55 / 0.22), 0 2px 8px oklch(14% 0.008 55 / 0.10);
@@ -439,8 +440,9 @@ body {
 .scroll-hint {
   text-align: center; font-size: 11px; color: oklch(68% 0.008 55);
   margin-top: 12px; font-family: 'IBM Plex Mono', monospace; letter-spacing: .5px;
+  max-width: 900px; margin-left: auto; margin-right: auto;
 }
-.screen-group { margin-bottom: 56px; }
+.screen-group { margin-bottom: 56px; max-width: 900px; margin-left: auto; margin-right: auto; }
 </style>
 </head>
 <body>
