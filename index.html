@@ -50,6 +50,73 @@ body {
   margin: 44px auto; max-width: 900px;
 }
 
+/* ── INFO BUTTON + CHANGELOG ── */
+.info-btn {
+  position: fixed; top: 20px; right: 24px; z-index: 999;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: oklch(99% 0.005 68); border: 1px solid oklch(78% 0.009 68);
+  box-shadow: 0 2px 10px oklch(14% 0.008 55 / 0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700;
+  color: oklch(33% 0.008 55); cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.info-btn:hover { transform: scale(1.06); box-shadow: 0 4px 16px oklch(14% 0.008 55 / 0.2); }
+
+.info-modal {
+  position: fixed; top: 62px; right: 24px; z-index: 1000;
+  width: 449px; max-width: 88vw;
+  background: oklch(99% 0.005 68); border-radius: 10px;
+  border: 1px solid oklch(86% 0.008 68);
+  box-shadow: 0 16px 44px oklch(14% 0.008 55 / 0.22), 0 2px 8px oklch(14% 0.008 55 / 0.1);
+  padding: 20px 22px;
+  transform-origin: top right;
+  opacity: 0; visibility: hidden; transform: scale(.94) translateY(-6px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+}
+.info-modal.show {
+  opacity: 1; visibility: visible; transform: scale(1) translateY(0);
+}
+.info-modal-body {
+  max-height: min(60vh, 420px); overflow-y: auto;
+  padding-right: 4px;
+}
+.info-modal-hd {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 4px;
+}
+.info-modal-title {
+  font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700;
+  color: oklch(14% 0.008 55); letter-spacing: -.3px;
+}
+.info-modal-close {
+  width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: oklch(52% 0.008 55); cursor: pointer;
+}
+.info-modal-close:hover { background: oklch(93% 0.008 68); }
+.info-modal-sub {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .5px;
+  color: oklch(52% 0.008 55); margin-bottom: 22px;
+}
+.changelog-entry { padding: 14px 0; border-top: 1px solid oklch(86% 0.008 68); }
+.changelog-entry:first-of-type { border-top: none; }
+.changelog-hd { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
+.changelog-ver {
+  font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: oklch(14% 0.008 55);
+}
+.changelog-date {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: oklch(52% 0.008 55); letter-spacing: .3px;
+}
+.changelog-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+.changelog-list li {
+  font-family: 'Inter', sans-serif; font-size: 12.5px; line-height: 1.5; color: oklch(33% 0.008 55);
+  padding-left: 14px; position: relative;
+}
+.changelog-list li::before {
+  content: "—"; position: absolute; left: 0; color: oklch(68% 0.008 55);
+}
+
 /* ── APP WINDOW SHELL ── */
 .app-window {
   width: 100%; max-width: 900px;
@@ -93,6 +160,14 @@ body {
   --blue:         oklch(46%  0.14 233);
   --blue-bg:      oklch(94%  0.04 233);
   --blue-border:  oklch(82%  0.07 233);
+
+  --teal:         oklch(48%  0.11 195);
+  --teal-bg:      oklch(94%  0.04 195);
+  --teal-border:  oklch(82%  0.07 195);
+
+  --violet:       oklch(46%  0.16 300);
+  --violet-bg:    oklch(94%  0.04 300);
+  --violet-border: oklch(82%  0.07 300);
 
   --font-display: 'Space Grotesk', sans-serif;
   --font-body:    'Inter', sans-serif;
@@ -178,31 +253,35 @@ body {
   font-family: var(--font-mono); font-size: 10px; font-weight: 500;
   letter-spacing: 2px; text-transform: uppercase; color: var(--ink-4);
 }
-.wf-home-panels { display: flex; flex: 1; min-height: 0; }
+.wf-home-panels { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; flex: 1; min-height: 0; }
 .wf-hpanel {
-  flex: 1; display: flex; flex-direction: column;
-  padding: 36px 40px; position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  padding: 28px 34px; position: relative; overflow: hidden;
+  border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
 }
-.wf-hpanel + .wf-hpanel { border-left: 1px solid var(--rule); }
+.wf-hpanel:nth-child(2n) { border-right: none; }
+.wf-hpanel:nth-child(n+3) { border-bottom: none; }
 .wf-hpanel.live { background: var(--paper-2); }
 .wf-hpanel-num {
   font-family: var(--font-mono); font-size: 10px; font-weight: 500;
-  letter-spacing: 1.5px; color: var(--ink-4); margin-bottom: 28px;
+  letter-spacing: 1.5px; color: var(--ink-4); margin-bottom: 16px;
 }
 .wf-hpanel-ico {
-  width: 50px; height: 50px; border-radius: var(--r2);
-  display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
+  width: 42px; height: 42px; border-radius: var(--r2);
+  display: flex; align-items: center; justify-content: center; margin-bottom: 14px;
 }
 .wf-hpanel.panel-uv .wf-hpanel-ico { background: var(--blue-bg); border: 1px solid var(--blue-border); }
 .wf-hpanel.panel-ct .wf-hpanel-ico { background: var(--amber-bg); border: 1px solid var(--amber-border); }
+.wf-hpanel.panel-hu .wf-hpanel-ico { background: var(--teal-bg); border: 1px solid var(--teal-border); }
+.wf-hpanel.panel-mk .wf-hpanel-ico { background: var(--violet-bg); border: 1px solid var(--violet-border); }
 .wf-hpanel-name {
-  font-family: var(--font-display); font-size: 26px; font-weight: 700;
+  font-family: var(--font-display); font-size: 22px; font-weight: 700;
   color: var(--ink); letter-spacing: -.5px; line-height: 1.1; margin-bottom: 6px;
 }
 .wf-hpanel-sub {
   font-family: var(--font-body); font-size: 13px; color: var(--ink-3);
 }
-.wf-hpanel-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 16px; }
+.wf-hpanel-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
 .wf-hpanel-tag {
   font-family: var(--font-mono); font-size: 9px; font-weight: 500;
   letter-spacing: 1px; text-transform: uppercase; color: var(--ink-4);
@@ -565,9 +644,47 @@ body {
 </head>
 <body>
 
+<div class="info-btn" id="info-btn" onclick="event.stopPropagation(); document.getElementById('info-modal').classList.toggle('show')" role="button" aria-label="View changelog" title="Version history">i</div>
+
+<div class="info-modal" id="info-modal">
+  <div class="info-modal-hd">
+    <div class="info-modal-title">Version History</div>
+    <div class="info-modal-close" onclick="document.getElementById('info-modal').classList.remove('show')" role="button" aria-label="Close">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </div>
+  </div>
+  <div class="info-modal-sub">LOGIC 1 · WIREFRAME DECK · CLIENT REVIEW COPY</div>
+
+  <div class="info-modal-body">
+    <div class="changelog-entry">
+      <div class="changelog-hd">
+        <span class="changelog-ver">v1.1</span>
+        <span class="changelog-date">04 Jul 2026</span>
+      </div>
+      <ul class="changelog-list">
+        <li>Home screen updated to a 2×2 grid — added Humidity Device and MIKE Device alongside UV and Cotton Grading</li>
+        <li>Each of the 4 modules now has its own accent color (blue, amber, teal, violet)</li>
+        <li>New "Module Open Loader" screen added — shown when an operator opens any device module</li>
+      </ul>
+    </div>
+
+    <div class="changelog-entry">
+      <div class="changelog-hd">
+        <span class="changelog-ver">v1.0</span>
+        <span class="changelog-date">15 May 2025</span>
+      </div>
+      <ul class="changelog-list">
+        <li>Initial wireframe deck published — Loader, Home (UV + Cotton Grading)</li>
+        <li>Full UV Device module — Control, Dashboard, Reports</li>
+        <li>Full Cotton Grading module — Control, Bale Management, Dashboard, Reports</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
 <div class="page-header">
   <h1>Logic 1 — App Wireframes</h1>
-  <p>9 screens · 3:2 aspect ratio · Client Review</p>
+  <p>11 screens · 3:2 aspect ratio · Client Review</p>
 </div>
 
 <div class="disclaimer-banner">
@@ -676,7 +793,64 @@ body {
             <div class="wf-hpanel-status nodev"><span class="wf-sdot"></span>Not Connected</div>
           </div>
         </div>
+        <!-- Humidity — connected -->
+        <div class="wf-hpanel panel-hu live">
+          <div class="wf-hpanel-num">03 / HUMIDITY DEVICE</div>
+          <div class="wf-hpanel-ico">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.8"><path d="M12 2.69s5.66 6.16 5.66 10.31a5.66 5.66 0 1 1-11.32 0C6.34 8.85 12 2.69 12 2.69z"/></svg>
+          </div>
+          <div class="wf-hpanel-name">Humidity Device</div>
+          <div class="wf-hpanel-sub">Moisture Monitoring System</div>
+          <div class="wf-hpanel-tags">
+            <span class="wf-hpanel-tag">Control</span>
+            <span class="wf-hpanel-tag">Dashboard</span>
+            <span class="wf-hpanel-tag">Reports</span>
+          </div>
+          <div class="wf-hpanel-bottom">
+            <div class="wf-hpanel-status connected"><span class="wf-sdot"></span>Connected</div>
+            <div class="wf-hpanel-open">Open Control Panel <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+          </div>
+        </div>
+        <!-- MIKE — connected -->
+        <div class="wf-hpanel panel-mk live">
+          <div class="wf-hpanel-num">04 / MIKE DEVICE</div>
+          <div class="wf-hpanel-ico">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--violet)" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div class="wf-hpanel-name">MIKE Device</div>
+          <div class="wf-hpanel-sub">Data Acquisition System</div>
+          <div class="wf-hpanel-tags">
+            <span class="wf-hpanel-tag">Control</span>
+            <span class="wf-hpanel-tag">Dashboard</span>
+            <span class="wf-hpanel-tag">Reports</span>
+          </div>
+          <div class="wf-hpanel-bottom">
+            <div class="wf-hpanel-status connected"><span class="wf-sdot"></span>Connected</div>
+            <div class="wf-hpanel-open">Open Control Panel <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 2b. MODULE OPEN LOADER ── -->
+<div class="screen-wrap">
+  <div class="screen-label"><span>2b · Module Open Loader</span><span class="badge">Transition</span></div>
+  <div class="app-window">
+    <div class="wf-titlebar">
+      <div class="wf-tb-brand">
+        <div class="wf-tb-glyph"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="18" rx="1.5" fill="oklch(97% 0.005 68)"/><rect x="13" y="11" width="8" height="10" rx="1.5" fill="oklch(97% 0.005 68)"/></svg></div>
+        <span class="wf-tb-name">Logic 1</span>
+      </div>
+      <div class="wf-tb-controls">
+        <div class="wf-tb-btn"><svg width="11" height="2" viewBox="0 0 11 2"><rect width="11" height="1.5" fill="currentColor" rx=".75"/></svg></div>
+        <div class="wf-tb-btn"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="1.5" y1="1.5" x2="8.5" y2="8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="8.5" y1="1.5" x2="1.5" y2="8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      </div>
+    </div>
+    <div class="wf-loader">
+      <div style="font-family:var(--font-display); font-size:15px; font-weight:600; color:var(--ink-2); letter-spacing:-.2px;">Opening <span style="color:var(--ink)">Humidity Device</span></div>
+      <div class="wf-ld-track" style="width:140px; height:2px; border-radius:2px;"><div class="wf-ld-prog" style="width:65%; height:100%; border-radius:2px;"></div></div>
     </div>
   </div>
 </div>
@@ -1237,7 +1411,17 @@ body {
 </div>
 </div><!-- end Cotton group -->
 
-<div class="scroll-hint">— 9 screens · Logic 1 v0.2 · Dashboard &amp; Reports updated —</div>
+<div class="scroll-hint">— 11 screens · Logic 1 v1.1 · Humidity &amp; MIKE modules added —</div>
+
+<script>
+document.addEventListener('click', e => {
+  const modal = document.getElementById('info-modal');
+  const btn = document.getElementById('info-btn');
+  if (modal.classList.contains('show') && !modal.contains(e.target) && e.target !== btn) {
+    modal.classList.remove('show');
+  }
+});
+</script>
 
 </body>
 </html>
